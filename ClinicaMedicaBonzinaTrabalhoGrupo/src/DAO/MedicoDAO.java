@@ -11,43 +11,39 @@ public class MedicoDAO {
     private Statement statement;
 
     public MedicoDAO() {
+        connectToDatabase();
     }
 
-        
-    public Connection connectToDatabase() {
-        Connection connection = null; //instância da conexão
+    public void connectToDatabase() {
         try {
             // Carregamento do JDBC Driver
             String driver = "com.mysql.cj.jdbc.Driver";
             Class.forName(driver);
-
-            // Configurar a conexão
-            String server = "localhost";
-            String database = "clinica_medica";
-            String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
-            String user = "root";
-            String password = "pass";
-
+            
+            // Configurar a conexão - valores para acessar a base de dados
+            final String server = "localhost";
+            final String database = "clinica_medica";
+            final String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
+            final String user = "root";
+            final String password = "pass";
+        
             // Conectando..
             connection = DriverManager.getConnection(url, user, password);
-
+            
             // As instruções permitem emitir consultas SQL para o banco de dados
             statement = connection.createStatement();
-
+            
             // Testando..
             if (connection != null) {
                 System.out.println("Status: Conectado!");
             } else {
                 System.out.println("Status: NÃO CONECTADO!");
             }
-            return connection;
-
+            
         } catch (ClassNotFoundException e) { //Driver não encontrado
             System.out.println("O driver nao foi encontrado.");
-            return null;
         } catch (SQLException e) {
             System.out.println("Nao foi possivel conectar...");
-            return null;
         }
     }
 }

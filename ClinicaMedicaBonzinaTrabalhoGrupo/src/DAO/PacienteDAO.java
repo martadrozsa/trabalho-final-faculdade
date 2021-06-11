@@ -11,10 +11,10 @@ public class PacienteDAO {
     private Statement statement;
       
     public PacienteDAO() {
+        connectToDatabase();
     }
      
-    public Connection connectToDatabase() {
-        Connection connection = null; //instância da conexão
+    public void connectToDatabase() {
         try {
             // Carregamento do JDBC Driver
             String driver = "com.mysql.cj.jdbc.Driver";
@@ -39,14 +39,11 @@ public class PacienteDAO {
             } else {
                 System.out.println("Status: NÃO CONECTADO!");
             }
-            return connection;
             
         } catch (ClassNotFoundException e) { //Driver não encontrado
             System.out.println("O driver nao foi encontrado.");
-            return null;
         } catch (SQLException e) {
             System.out.println("Nao foi possivel conectar...");
-            return null;
         }
     }    
 }
