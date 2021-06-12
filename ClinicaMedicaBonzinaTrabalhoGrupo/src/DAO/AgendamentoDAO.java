@@ -37,7 +37,7 @@ public class AgendamentoDAO {
             if (connection != null) {
                 System.out.println("Status: Conectado!");
             } else {
-                System.out.println("Status: NÃO CONECTADO!");
+                System.out.println("Status: Não concectado!");
             }
             
         } catch (ClassNotFoundException e) { //Driver não encontrado
