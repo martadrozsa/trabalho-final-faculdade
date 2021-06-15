@@ -13,7 +13,7 @@ public class PacienteController {
     }
 
     public boolean cadastrar(String nome, Date dataNascimento, String endereco, String telefone) {
-        Paciente paciente = new Paciente(nome, dataNascimento, endereco, telefone);
+        Paciente paciente = new Paciente(dataNascimento, endereco, nome, telefone);
         return pacienteBusiness.insertPacienteIntoBD(paciente);
     }
 

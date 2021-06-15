@@ -71,15 +71,13 @@ public class MedicoDAO {
             String nomeConsultorio = resultSet.getString("consultorio");
             int id = resultSet.getInt("id");
             String nome = resultSet.getString("nome");
-            Date dataNascimento = resultSet.getDate("data_nascimento");
-            String endereco = resultSet.getString("endereco");
             String telefone = resultSet.getString("telefone");
             
             //converse tipo String em ENUM
             Periodo periodo = Periodo.valueOf(nomePeriodo);
             Consultorio consultorio = Consultorio.valueOf(nomeConsultorio);
             
-            Medico medico = new Medico(crm, especialidade, periodo, consultorio, id, nome, dataNascimento, endereco, telefone);
+            Medico medico = new Medico(crm, especialidade, periodo, consultorio, id, nome, telefone);
             medicos.add(medico);
             
         }
@@ -88,11 +86,9 @@ public class MedicoDAO {
     
     public boolean insertMedico(Medico medico) {
         try {
-            String insertStatement = "INSERT INTO medico(crm, especialidade, periodo, consultorio, nome, data_nascimento, endereco, telefone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String insertStatement = "INSERT INTO medico(crm, especialidade, periodo, consultorio, nome, telefone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connect.prepareStatement(insertStatement);
-            
-            java.sql.Date sqlDate = new java.sql.Date(medico.getDataNascimento().getTime());
-            
+     
             //converse tipo
             String periodo = medico.getPeriodo().toString();
             String consultorio = medico.getConsultorio().toString();
@@ -102,8 +98,6 @@ public class MedicoDAO {
             preparedStatement.setString(3, periodo);
             preparedStatement.setString(4, consultorio);
             preparedStatement.setString(5, medico.getNome());
-            preparedStatement.setDate(6, sqlDate);
-            preparedStatement.setString(7, medico.getEndereco());
             preparedStatement.setString(8, medico.getTelefone());
 
             preparedStatement.executeUpdate();
@@ -116,11 +110,9 @@ public class MedicoDAO {
     }
     
     public boolean updateMedico(Medico medico) {
-        String updateStatement = "UPDATE medico SET crm=?, especialidade=?, periodo=?, consultorio=?, nome=?, data_nascimento=?, endereco=?, telefone=? WHERE id=?";
+        String updateStatement = "UPDATE medico SET crm=?, especialidade=?, periodo=?, consultorio=?, nome=?, telefone=? WHERE id=?";
         try {
             PreparedStatement preparedStatement = connect.prepareStatement(updateStatement);
-            
-            java.sql.Date sqlDate = new java.sql.Date(medico.getDataNascimento().getTime());
             
             String periodo = medico.getPeriodo().toString();
             String consultorio = medico.getConsultorio().toString();
@@ -130,8 +122,6 @@ public class MedicoDAO {
             preparedStatement.setString(3, periodo);
             preparedStatement.setString(4, consultorio);
             preparedStatement.setString(5, medico.getNome());
-            preparedStatement.setDate(6, sqlDate);
-            preparedStatement.setString(7, medico.getEndereco());
             preparedStatement.setString(8, medico.getTelefone());
             
             preparedStatement.executeUpdate();
@@ -182,24 +172,4 @@ public class MedicoDAO {
         }
     }
  
-    public List<Medico> getMinhaListByNomeCompleto(String nome) {
-        // database, me entrega todos as linhas na tabela medico que tem a nome = ?
-            String queryStatement = "SELECT * FROM medico WHERE nome=?";
-
-        try {  
-            PreparedStatement preparedStatement = connect.prepareStatement(queryStatement);
-            preparedStatement.setString(1, nome);
-
-            // Recupera dados da base
-            ResultSet resultSet = preparedStatement.executeQuery();
-            List<Medico> medicos = parseResultSetToMedico(resultSet);           
-            preparedStatement.close();
-            // Todos os pacientes na lista "pacientes"
-            return medicos;
-            
-        } catch (Exception ex) {
-            System.out.println("Error while querying data: " + ex.toString());
-            return new ArrayList<>();
-        }
-    }
 }

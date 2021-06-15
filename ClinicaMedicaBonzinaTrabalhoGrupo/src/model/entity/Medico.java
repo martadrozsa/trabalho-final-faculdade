@@ -15,6 +15,10 @@ public class Medico extends Pessoa{
     public Medico(){
     }
 
+    public Medico(int id, String nome, String telefone) {
+        super(id, nome, telefone);
+    }
+
     public Medico(int crm, String especialidade, Periodo periodo, Consultorio consultorio) {
         this.crm = crm;
         this.especialidade = especialidade;
@@ -22,16 +26,16 @@ public class Medico extends Pessoa{
         this.consultorio = consultorio;
     }
 
-    public Medico(int crm, String especialidade, Periodo periodo, Consultorio consultorio, int id, String nome, Date dataNascimento, String endereco, String telefone) {
-        super(id, nome, dataNascimento, endereco, telefone);
+    public Medico(int crm, String especialidade, Periodo periodo, Consultorio consultorio, int id, String nome, String telefone) {
+        super(id, nome, telefone);
         this.crm = crm;
         this.especialidade = especialidade;
         this.periodo = periodo;
         this.consultorio = consultorio;
     }
-    
-    public Medico(int crm, String especialidade, Periodo periodo, Consultorio consultorio, String nome, Date dataNascimento, String endereco, String telefone) {
-        super(nome, dataNascimento, endereco, telefone);
+
+    public Medico(int crm, String especialidade, Periodo periodo, Consultorio consultorio, String nome, String telefone) {
+        super(nome, telefone);
         this.crm = crm;
         this.especialidade = especialidade;
         this.periodo = periodo;

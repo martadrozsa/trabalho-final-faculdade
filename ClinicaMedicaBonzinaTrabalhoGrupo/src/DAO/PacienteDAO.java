@@ -171,24 +171,24 @@ public class PacienteDAO {
         }
     }
  
-    public List<Paciente> getMinhaListByNomeCompleto(String nome) {
-        // database, me entrega todos as linhas na tabela paciente que tem o nome = ?
-            String queryStatement = "SELECT * FROM paciente WHERE nome=?";
-
-        try {  
-            PreparedStatement preparedStatement = connection.prepareStatement(queryStatement);
-            preparedStatement.setString(1, nome);
-
-            // Recupera dados da base
-            ResultSet resultSet = preparedStatement.executeQuery();
-            List<Paciente> pacientes = parseResultSetToPaciente(resultSet);           
-            preparedStatement.close();
-            // Todos os pacientes na lista "pacientes"
-            return pacientes;
-            
-        } catch (Exception ex) {
-            System.out.println("Error while querying data: " + ex.toString());
-            return new ArrayList<>();
-        }
-    }
+//    public List<Paciente> getMinhaListByNomeCompleto(String nome) {
+//        // database, me entrega todos as linhas na tabela paciente que tem o nome = ?
+//            String queryStatement = "SELECT * FROM paciente WHERE nome=?";
+//
+//        try {  
+//            PreparedStatement preparedStatement = connection.prepareStatement(queryStatement);
+//            preparedStatement.setString(1, nome);
+//
+//            // Recupera dados da base
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            List<Paciente> pacientes = parseResultSetToPaciente(resultSet);           
+//            preparedStatement.close();
+//            // Todos os pacientes na lista "pacientes"
+//            return pacientes;
+//            
+//        } catch (Exception ex) {
+//            System.out.println("Error while querying data: " + ex.toString());
+//            return new ArrayList<>();
+//        }
+//    }
 }
