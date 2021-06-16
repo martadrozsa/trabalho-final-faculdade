@@ -18,7 +18,7 @@ public class PacienteController {
     }
 
     public boolean editar(String nome, Date dataNascimento, String endereco, String telefone) {
-        Paciente paciente = new Paciente();
+        Paciente paciente = new Paciente(dataNascimento, endereco, nome, telefone);
         return pacienteBusiness.updatePacienteInBD(paciente);
     }
 
