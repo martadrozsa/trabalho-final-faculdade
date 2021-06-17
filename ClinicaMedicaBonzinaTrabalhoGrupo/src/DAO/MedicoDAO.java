@@ -86,7 +86,7 @@ public class MedicoDAO {
     
     public boolean insertMedico(Medico medico) {
         try {
-            String insertStatement = "INSERT INTO medico(crm, especialidade, periodo, consultorio, nome, telefone) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String insertStatement = "INSERT INTO medico(crm, especialidade, periodo, consultorio, nome, telefone) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connect.prepareStatement(insertStatement);
      
             //converse tipo
@@ -98,7 +98,7 @@ public class MedicoDAO {
             preparedStatement.setString(3, periodo);
             preparedStatement.setString(4, consultorio);
             preparedStatement.setString(5, medico.getNome());
-            preparedStatement.setString(8, medico.getTelefone());
+            preparedStatement.setString(6, medico.getTelefone());
 
             preparedStatement.executeUpdate();
             preparedStatement.close();
@@ -122,7 +122,7 @@ public class MedicoDAO {
             preparedStatement.setString(3, periodo);
             preparedStatement.setString(4, consultorio);
             preparedStatement.setString(5, medico.getNome());
-            preparedStatement.setString(8, medico.getTelefone());
+            preparedStatement.setString(6, medico.getTelefone());
             
             preparedStatement.executeUpdate();
             preparedStatement.close();
