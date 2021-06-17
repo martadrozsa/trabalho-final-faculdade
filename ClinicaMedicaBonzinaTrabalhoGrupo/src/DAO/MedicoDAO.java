@@ -11,31 +11,11 @@ import model.entity.enums.Periodo;
 
 public class MedicoDAO {
 
-    //declarando as variáveis. Não estão inicializadas. Até serem inicializadas o valor é null e não podems e utilizadas.
     private final MySQLConnection mySQLConn;
     
-    // construtor PacienteDAO
     public MedicoDAO() {
         this.mySQLConn = new MySQLConnection();
     }
-    
-    /*
-    private void connectToDatabase(String ip, int port, String schema, String username, String password) {
-        try {
-            // This will load the MySQL driver, each DB has its own driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String connectionStr = "jdbc:mysql://" + ip + ":" + port + "/" + schema + "?user=" + username + "&password=" + password + "&serverTimezone=UTC";
-           
-            connect = DriverManager.getConnection(connectionStr);
-
-            // Statements allow to issue SQL queries to the database - usado para fazer as querys
-            statement = connect.createStatement();
-            
-        } catch (Exception ex) {
-            System.out.println("Failed to connect to database: " + ex.toString());
-        }
-    }
-    */
     
     public List<Medico> getMinhaListaMedicos(){
         try {
