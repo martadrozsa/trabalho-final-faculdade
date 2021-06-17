@@ -48,7 +48,8 @@ public class PacienteController {
     // transformando os dados da base em uma matriz de texto para imprimir na tela
     // método de pesquisa para a TelaPesquisaView e para a TelaBuscarPacienteView
     public String[][] getMinhaMatrizTexto(String inputPesquisa) {
-        List<Paciente> resultList = pacienteBusiness.getMinhaLista(inputPesquisa);
+        
+        List<Paciente> resultList = pacienteBusiness.getMinhaLista(inputPesquisa); 
 
         int tamanho = resultList.size();
         String[][] resulMatrizPacientes = new String[tamanho][5];

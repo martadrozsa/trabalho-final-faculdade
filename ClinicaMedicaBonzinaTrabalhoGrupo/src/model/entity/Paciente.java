@@ -10,13 +10,10 @@ public class Paciente extends Pessoa{
     public Paciente() {
     }
 
-    public Paciente(Date dataNascimento, String endereco) {
+    public Paciente(Date dataNascimento, String endereco, int id, String nome, String telefone) {
+        super(id, nome, telefone);
         this.dataNascimento = dataNascimento;
         this.endereco = endereco;
-    }
-
-    public Paciente(int id, String nome, String telefone) {
-        super(id, nome, telefone);
     }
 
     public Paciente(Date dataNascimento, String endereco, String nome, String telefone) {
