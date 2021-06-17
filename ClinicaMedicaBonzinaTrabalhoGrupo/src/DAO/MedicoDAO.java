@@ -1,13 +1,9 @@
 package DAO;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import model.entity.Medico;
 import model.entity.enums.Consultorio;
@@ -16,14 +12,14 @@ import model.entity.enums.Periodo;
 public class MedicoDAO {
 
     //declarando as variáveis. Não estão inicializadas. Até serem inicializadas o valor é null e não podems e utilizadas.
-    private Connection connect;
-    private Statement statement;
+    private final MySQLConnection mySQLConn;
     
     // construtor PacienteDAO
     public MedicoDAO() {
-        connectToDatabase("localhost", 3306, "clinica_medica", "root", "pass");
+        this.mySQLConn = new MySQLConnection();
     }
     
+    /*
     private void connectToDatabase(String ip, int port, String schema, String username, String password) {
         try {
             // This will load the MySQL driver, each DB has its own driver
@@ -39,13 +35,14 @@ public class MedicoDAO {
             System.out.println("Failed to connect to database: " + ex.toString());
         }
     }
+    */
     
     public List<Medico> getMinhaListaMedicos(){
         try {
             String query = "SELECT * FROM medico";
 
             // Recupera dados da base
-            ResultSet resultSet = statement.executeQuery(query);
+            ResultSet resultSet = mySQLConn.getStatement().executeQuery(query);
 
             List<Medico> medicos = parseResultSetToMedico(resultSet);
 
@@ -87,7 +84,7 @@ public class MedicoDAO {
     public boolean insertMedico(Medico medico) {
         try {
             String insertStatement = "INSERT INTO medico(crm, especialidade, periodo, consultorio, nome, telefone) VALUES (?, ?, ?, ?, ?, ?)";
-            PreparedStatement preparedStatement = connect.prepareStatement(insertStatement);
+            PreparedStatement preparedStatement = mySQLConn.getConnection().prepareStatement(insertStatement);
      
             //converse tipo
             String periodo = medico.getPeriodo().toString();
@@ -112,7 +109,7 @@ public class MedicoDAO {
     public boolean updateMedico(Medico medico) {
         String updateStatement = "UPDATE medico SET crm=?, especialidade=?, periodo=?, consultorio=?, nome=?, telefone=? WHERE id=?";
         try {
-            PreparedStatement preparedStatement = connect.prepareStatement(updateStatement);
+            PreparedStatement preparedStatement = mySQLConn.getConnection().prepareStatement(updateStatement);
             
             String periodo = medico.getPeriodo().toString();
             String consultorio = medico.getConsultorio().toString();
@@ -137,7 +134,7 @@ public class MedicoDAO {
     public boolean deleteMedicoById(int id) {
         try {
             String deleteStatement = "DELETE FROM medico WHERE id=?";
-            PreparedStatement preparedStatement = connect.prepareStatement(deleteStatement);
+            PreparedStatement preparedStatement = mySQLConn.getConnection().prepareStatement(deleteStatement);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
             
@@ -156,7 +153,7 @@ public class MedicoDAO {
             String queryStatement = "SELECT * FROM medico WHERE nome LIKE ?";
             
         try {
-            PreparedStatement preparedStatement = connect.prepareStatement(queryStatement);
+            PreparedStatement preparedStatement = mySQLConn.getConnection().prepareStatement(queryStatement);
             preparedStatement.setString(1, termoBusca);
 
             // Recupera dados da base
