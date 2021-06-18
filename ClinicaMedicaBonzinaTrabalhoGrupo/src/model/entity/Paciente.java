@@ -14,9 +14,11 @@ public class Paciente extends Pessoa{
         this.dataNascimento = dataNascimento;
         this.endereco = endereco;
     }
-
-    public Paciente(int id, String nome, String telefone) {
+       
+    public Paciente(Date dataNascimento, String endereco, int id, String nome, String telefone) {
         super(id, nome, telefone);
+        this.dataNascimento = dataNascimento;
+        this.endereco = endereco;
     }
 
     public Paciente(Date dataNascimento, String endereco, String nome, String telefone) {
@@ -24,7 +26,7 @@ public class Paciente extends Pessoa{
         this.dataNascimento = dataNascimento;
         this.endereco = endereco;
     }
-    
+   
     public Date getDataNascimento() {
         return dataNascimento;
     }

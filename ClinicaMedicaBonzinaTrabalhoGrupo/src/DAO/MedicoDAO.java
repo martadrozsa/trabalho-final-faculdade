@@ -11,7 +11,7 @@ import model.entity.enums.Periodo;
 
 public class MedicoDAO {
 
-    //declarando as variáveis. Não estão inicializadas. Até serem inicializadas o valor é null e não podems e utilizadas.
+    //declarando as variáveis. Não estão inicializadas. Até serem inicializadas o valor é null e não podem e utilizadas.
     private final MySQLConnection mySQLConn;
     
     // construtor PacienteDAO
