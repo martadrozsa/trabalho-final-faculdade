@@ -16,7 +16,6 @@ nbproject/private/**
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear

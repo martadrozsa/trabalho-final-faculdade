@@ -35,6 +35,7 @@ public class PacienteController {
         
         List<Paciente> minhaLista = pacienteBusiness.getMinhaLista();
         int tamanho = minhaLista.size();
+        
         String[][] matrizPacientes = new String[tamanho][5];
         for (int i = 0; i < tamanho; i++) {
             matrizPacientes[i][0] = minhaLista.get(i).getId() + "";
@@ -49,9 +50,10 @@ public class PacienteController {
     // transformando os dados da base em uma matriz de texto para imprimir na tela
     // método de pesquisa para a TelaPesquisaView e para a TelaBuscarPacienteView
     public String[][] getMinhaMatrizTexto(String inputNomePesquisa) {
+        
         List<Paciente> resultList = pacienteBusiness.getMinhaListaByNome(inputNomePesquisa);
-
         int tamanho = resultList.size();
+        
         String[][] resulMatrizPacientes = new String[tamanho][5];
         for (int i = 0; i < tamanho; i++) {
             resulMatrizPacientes[i][0] = resultList.get(i).getId() + "";
