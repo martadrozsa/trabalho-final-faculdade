@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import model.business.PacienteBusiness;
@@ -49,7 +50,8 @@ public class PacienteController {
     // transformando os dados da base em uma matriz de texto para imprimir na tela
     // método de pesquisa para a TelaPesquisaView e para a TelaBuscarPacienteView
     public String[][] getMinhaMatrizTexto(String inputNomePesquisa) {
-        List<Paciente> resultList = pacienteBusiness.getMinhaListaByNome(inputNomePesquisa);
+    //    List<Paciente> resultList = pacienteBusiness.getMinhaListaByNome(inputNomePesquisa);
+        List<Paciente> resultList = tabelaTeste();
 
         int tamanho = resultList.size();
         String[][] resulMatrizPacientes = new String[tamanho][5];
@@ -62,4 +64,23 @@ public class PacienteController {
         }
         return resulMatrizPacientes;
     }
+    public List<Paciente> tabelaTeste() {
+        Date data = new Date();
+        Paciente paciente1 = new Paciente(data, "rua 0", 0, "tico doido", "333311122");
+        Paciente paciente2 = new Paciente(data, "rua 1", 1, "maria corona", "99999999");
+        Paciente paciente3 = new Paciente(data, "rua 2", 2, "marco loco", "999921111");
+        Paciente paciente4 = new Paciente(data, "rua 3", 3, "antonio lindo", "99992221");
+        Paciente paciente5 = new Paciente(data, "rua 4", 4, "amanda gabriela", "888818888");
+        Paciente paciente6 = new Paciente(data, "rua 5", 5, "anna julia", "999111222");
+        Paciente paciente7 = new Paciente(data, "rua 6", 6, "kelly souza", "222111333");
+        List<Paciente> lista = new ArrayList<>();
+        lista.add(paciente1);
+        lista.add(paciente2);
+        lista.add(paciente3);
+        lista.add(paciente4);
+        lista.add(paciente5);
+        lista.add(paciente6);
+        lista.add(paciente7);
+        return lista;
+    }   
 }
