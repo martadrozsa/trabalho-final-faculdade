@@ -56,26 +56,5 @@ public class MedicoController {
             matrizMedicos[i][6] = minhaLista.get(i).getConsultorio().toString();   
         }
         return matrizMedicos;
-    }
-    
-    // transformando os dados da base em uma matriz de texto para imprimir na tela
-    // método de pesquisa para a TelaPesquisaView e para a TelaBuscarPacienteView
-    public String[][] getMinhaMatrizTexto(String inputPesquisa) {
-        
-        List<Medico> minhaLista = medicoBusiness.getMinhaListaByNome(inputPesquisa);
-        
-        String[][] matrizMedicos = new String[minhaLista.size()][5];
-        
-        for (int i = 0; i < minhaLista.size(); i++) {
-            matrizMedicos[i][0] = minhaLista.get(i).getId() + "";
-            matrizMedicos[i][1] = minhaLista.get(i).getNome();
-            matrizMedicos[i][2] = minhaLista.get(i).getTelefone();
-            matrizMedicos[i][3] = minhaLista.get(i).getCrm() + "";
-            matrizMedicos[i][4] = minhaLista.get(i).getEspecialidade();
-            matrizMedicos[i][5] = minhaLista.get(i).getPeriodo().toString();
-            matrizMedicos[i][6] = minhaLista.get(i).getConsultorio().toString();   
-        }
-        return matrizMedicos;
-    }
-    
+    }      
 }

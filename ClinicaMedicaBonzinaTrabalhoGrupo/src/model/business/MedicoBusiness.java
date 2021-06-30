@@ -32,4 +32,9 @@ public class MedicoBusiness {
     public boolean deleteMedicoFromBD(int id) {
         return medicoDAO.deleteMedicoById(id);
     }
+    
+    // retorna todos os médicos
+    public List<Medico> getMedicos(){
+        return medicoDAO.getMinhaListaMedicos();
+    }
 }

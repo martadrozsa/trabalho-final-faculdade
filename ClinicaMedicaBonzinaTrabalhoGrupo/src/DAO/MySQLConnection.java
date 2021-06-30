@@ -22,7 +22,7 @@ public class MySQLConnection {
             // Configurar a conexão - valores para acessar a base de dados
             final String server = "localhost";
             final String database = "clinica_medica";
-            final String url = "jdbc:mysql://" + server + ":3306/" + database + "?useTimezone=true&serverTimezone=UTC";
+            final String url = "jdbc:mysql://" + server + ":3306/" + database + "?serverTimezone=UTC&useTimezone=true";
             final String user = "root";
             final String password = "pass";
 
