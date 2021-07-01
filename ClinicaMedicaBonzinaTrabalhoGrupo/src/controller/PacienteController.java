@@ -1,7 +1,7 @@
 package controller;
 
 import java.util.ArrayList;
-import java.sql.Date;
+import java.util.Date;
 import java.time.LocalDate;
 import java.util.List;
 import model.business.PacienteBusiness;
@@ -65,9 +65,11 @@ public class PacienteController {
         }
         return resulMatrizPacientes;
     }
+    
+    
     public List<Paciente> tabelaTeste() {
         LocalDate datal = LocalDate.of(2021, 06, 28);
-        Date data = Date.valueOf(datal);
+        java.sql.Date data = java.sql.Date.valueOf(datal);
         Paciente paciente1 = new Paciente(data, "rua 0", 0, "tico doido", "4433331122");
         Paciente paciente2 = new Paciente(data, "rua 1", 1, "maria corona", "44123456789");
         Paciente paciente3 = new Paciente(data, "rua 2", 2, "marco loco", "44899991111");
