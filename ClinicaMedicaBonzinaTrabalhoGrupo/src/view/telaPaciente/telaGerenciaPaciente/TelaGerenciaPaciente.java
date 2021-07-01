@@ -1,4 +1,4 @@
-package view.telaPesquisa;
+package view.telaPaciente.telaGerenciaPaciente;
 
 import controller.PacienteController;
 import java.util.ArrayList;
@@ -138,7 +138,6 @@ public class TelaGerenciaPaciente extends javax.swing.JFrame {
         btnExcluir = new javax.swing.JButton();
 
         TelaTabela.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        TelaTabela.setMaximumSize(new java.awt.Dimension(569, 377));
         TelaTabela.setMinimumSize(new java.awt.Dimension(569, 377));
         TelaTabela.setResizable(false);
 
@@ -168,7 +167,6 @@ public class TelaGerenciaPaciente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabelaGrafica.setCellSelectionEnabled(false);
         tabelaGrafica.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabelaGraficaMouseClicked(evt);

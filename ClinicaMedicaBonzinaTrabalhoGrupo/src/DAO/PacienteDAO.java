@@ -29,7 +29,7 @@ public class PacienteDAO {
             return pacientes;
             
         } catch (Exception ex) {
-            System.out.println("Error while querying data: " + ex.toString());
+            System.out.println("Erro no DAO: " + ex.toString());
             return new ArrayList<>();
         }
     }

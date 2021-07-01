@@ -1,4 +1,4 @@
-package view.telaPesquisa;
+package view.telaPaciente.telaGerenciaPaciente;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
