@@ -70,13 +70,13 @@ public class PacienteController {
     public List<Paciente> tabelaTeste() {
         LocalDate datal = LocalDate.of(2021, 06, 28);
         java.sql.Date data = java.sql.Date.valueOf(datal);
-        Paciente paciente1 = new Paciente(data, "rua 0", 0, "tico doido", "4433331122");
-        Paciente paciente2 = new Paciente(data, "rua 1", 1, "maria corona", "44123456789");
-        Paciente paciente3 = new Paciente(data, "rua 2", 2, "marco loco", "44899991111");
-        Paciente paciente4 = new Paciente(data, "rua 3", 3, "antonio lindo", "44899992221");
-        Paciente paciente5 = new Paciente(data, "rua 4", 4, "amanda gabriela", "4488818888");
-        Paciente paciente6 = new Paciente(data, "rua 5", 5, "anna julia", "4499111222");
-        Paciente paciente7 = new Paciente(data, "rua 6", 6, "kelly souza", "4422111333");
+        Paciente paciente1 = new Paciente(data, "rua 0", 10, "tico doido", "4433331122");
+        Paciente paciente2 = new Paciente(data, "rua 1", 20, "maria corona", "44123456789");
+        Paciente paciente3 = new Paciente(data, "rua 2", 30, "marco loco", "44899991111");
+        Paciente paciente4 = new Paciente(data, "rua 3", 40, "antonio lindo", "44899992221");
+        Paciente paciente5 = new Paciente(data, "rua 4", 50, "amanda gabriela", "4488818888");
+        Paciente paciente6 = new Paciente(data, "rua 5", 60, "anna julia", "4499111222");
+        Paciente paciente7 = new Paciente(data, "rua 6", 70, "kelly souza", "4422111333");
         List<Paciente> lista = new ArrayList<>();
         lista.add(paciente1);
         lista.add(paciente2);

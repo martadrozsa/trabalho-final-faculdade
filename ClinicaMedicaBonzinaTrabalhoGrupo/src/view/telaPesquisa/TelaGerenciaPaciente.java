@@ -2,49 +2,52 @@ package view.telaPesquisa;
 
 import controller.PacienteController;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 
-public class TelaPesquisa extends javax.swing.JFrame {
+public class TelaGerenciaPaciente extends javax.swing.JFrame {
 
     PacienteController controlador;
     DefaultListModel modeloLista;
     String[][] matrizPacientes;
-    String id;
-    
+    Map<Integer, String> idsCapturados;
     int indiceLista;
     
-    public TelaPesquisa() {
+    public TelaGerenciaPaciente() {
         
         initComponents();
         this.setLocationRelativeTo(null);
         controlador = new PacienteController();
         modeloLista = new DefaultListModel();
+        idsCapturados = new HashMap<>();
         lstResultado.setModel(modeloLista);
         lstResultado.setVisible(false);
+        
     }
 
     public void listarResultado() {
         //limpa a lista caso ja tenha sido preenchida
-        //preeche a matriz com os dados do banco
+        //chama o metodo pesquisar que busca os dados com o controlador
         //usei um arraylist pra botar os nomes da matriz na lista de resultado
         //se a lista vier vazia ela exibe "Sem resultado"
     
         modeloLista.clear();
-        matrizPacientes = controlador.getMinhaMatrizTexto(txtPesquisa.getText());
-
+        
+        getMatriz();
+        
         ArrayList<String> nomes = new ArrayList<>();
         
-        int tamanhoMatriz = 0;//matrizPacientes.length;
+        int tamanhoMatriz = matrizPacientes.length;
         
         if (tamanhoMatriz != 0) {
             
             for (int i = 0; i < tamanhoMatriz; i++) {
                 nomes.add(matrizPacientes[i][1]);
             }
-            
+            lstResultado.setVisibleRowCount(nomes.size());
             nomes.forEach(nome -> {
-            //    modeloLista.setSize(tamanhoMatriz);
                 modeloLista.addElement(nome);
             }); 
             // isso é um forEach escrito com lambda
@@ -52,11 +55,29 @@ public class TelaPesquisa extends javax.swing.JFrame {
             // ele da um addElement na listaModelo passando o nome
             
         } else {
+            //esse metodo não ta se comportando bem aqui...
+            //deveria apagar a listaModelo e mostrar só 1 campo "sem resultado"
+            //apesar de mostrar o sem resultado, se você clicar nele ainda
+            //preenche os campos!! acontecendo aqui, deixei pra teste ai
             modeloLista.clear();
             lstResultado.setVisibleRowCount(1);
             modeloLista.addElement("Sem resultado");
         }
         
+    }
+    public void getMatriz(){
+        //chama o metodo do controlador e bota os resultados do banco na matriz
+        //percorre a matriz e bota os ids dentro do map com o metodo put
+        //put equivale ao add das listas, veja idsCapturados.put(i, captura)
+        //map<chave, valor>, chave é o inteiro i, valor é o String capturaId
+        //no caso, capturaId é o id que vem em formato String do controlador
+        
+        matrizPacientes = controlador.getMinhaMatrizTexto(txtPesquisa.getText());
+                
+        for(int i = 0; i< matrizPacientes.length; i++) {
+            String capturaId = matrizPacientes[i][0];
+            idsCapturados.put(i, capturaId);
+        }
     }
     
     public void preencherCampos() {
@@ -114,6 +135,7 @@ public class TelaPesquisa extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         btnListar = new javax.swing.JButton();
         lstResultado = new javax.swing.JList<>();
+        btnExcluir = new javax.swing.JButton();
 
         TelaTabela.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         TelaTabela.setMaximumSize(new java.awt.Dimension(569, 377));
@@ -146,7 +168,7 @@ public class TelaPesquisa extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabelaGrafica.setColumnSelectionAllowed(true);
+        tabelaGrafica.setCellSelectionEnabled(false);
         tabelaGrafica.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabelaGraficaMouseClicked(evt);
@@ -247,6 +269,13 @@ public class TelaPesquisa extends javax.swing.JFrame {
             }
         });
 
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -254,20 +283,22 @@ public class TelaPesquisa extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(btnLimpar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnEditar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnCadastrar))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblData, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                                .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblData, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                            .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblEndereco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnExcluir)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnLimpar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnEditar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCadastrar))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtNome)
@@ -279,7 +310,7 @@ public class TelaPesquisa extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lstResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,7 +341,8 @@ public class TelaPesquisa extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimpar)
                     .addComponent(btnEditar)
-                    .addComponent(btnCadastrar))
+                    .addComponent(btnCadastrar)
+                    .addComponent(btnExcluir))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -320,8 +352,8 @@ public class TelaPesquisa extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -362,10 +394,10 @@ public class TelaPesquisa extends javax.swing.JFrame {
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         //metodo alternativo para exibir tela com a tabela de resultados
-        //TelaTabela é um JFrame adicional que está em Outros Componentes
+        //TelaTabela é um JFrame adicional que está em [OutrosComponentes]
         //exibe a telaTabela, o setLocation...(null) bota essa tela bem no meio
         
-        matrizPacientes = controlador.getMinhaMatrizTexto(txtPesquisa.getText());
+        getMatriz();
         carregaTabela(matrizPacientes);
         TelaTabela.setVisible(true);
         TelaTabela.setLocationRelativeTo(null);  
@@ -373,6 +405,7 @@ public class TelaPesquisa extends javax.swing.JFrame {
     
     public void carregaTabela(String[][] matrizPacientes) {
         //roubei esse metodo do professor, ele preenche a JTable da TelaTabela
+        //chamado no btnListarActionPerformed acima
         
         DefaultTableModel modelo = (DefaultTableModel) tabelaGrafica.getModel();
         modelo.setNumRows(0);
@@ -407,6 +440,7 @@ public class TelaPesquisa extends javax.swing.JFrame {
                 data =     tabelaGrafica.getValueAt(tabelaGrafica.getSelectedRow(), 1).toString();
                 endereco = tabelaGrafica.getValueAt(tabelaGrafica.getSelectedRow(), 2).toString();
                 telefone = tabelaGrafica.getValueAt(tabelaGrafica.getSelectedRow(), 3).toString();
+                indiceLista = tabelaGrafica.getSelectedRow();
             }
             else {
                 System.out.println("erro");
@@ -419,13 +453,23 @@ public class TelaPesquisa extends javax.swing.JFrame {
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         //limpa os campos e a variavel que guarda o id;
-        
+        indiceLista = -1;
         txtPesquisa.setText("");
         txtNome.setText("");
         dtChooser.cleanup();
         txtEndereco.setText("");
         txtTelefone.setText("");               
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        //pego o id do map ainda em formato de String, transformo em int e mando
+        //pro controlador apagar o paciente selecionado. usando o indice da lista;
+        
+        String fromMap= idsCapturados.get(indiceLista);
+        int idApagar = Integer.parseInt(fromMap);
+        System.out.println(idApagar); //teste pra ver se o id vem certo, vem certinho
+        //controlador.apagar(IdApagar); ----------liberar o metodo 
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -441,8 +485,9 @@ public class TelaPesquisa extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPesquisa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciaPaciente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
         
         //</editor-fold>
@@ -450,7 +495,7 @@ public class TelaPesquisa extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPesquisa().setVisible(true);
+                new TelaGerenciaPaciente().setVisible(true);
             }
         });
     }
@@ -459,6 +504,7 @@ public class TelaPesquisa extends javax.swing.JFrame {
     private javax.swing.JFrame TelaTabela;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnListar;
     private com.toedter.calendar.JDateChooser dtChooser;
