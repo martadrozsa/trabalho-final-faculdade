@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-public class Util {
+public class DateUtil {
     
     public static Date conversorData(String entrada) {
         //metodo pra pegar o data que vem como texto do banco e transformar em data
@@ -25,7 +25,7 @@ public class Util {
             data = sdf.parse(entrada);
             
         } catch (ParseException ex) {
-            Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DateUtil.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex, "Erro na conversão de Data", 0);     
         }
         

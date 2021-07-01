@@ -7,8 +7,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import view.telaAgendamento.TelaAgendamento;
+import view.util.SwingUtil;
+import static view.util.SwingUtil.centralizaCells;
 
 
 public class TelaConsulta extends javax.swing.JFrame {
@@ -22,7 +25,9 @@ public class TelaConsulta extends javax.swing.JFrame {
     public TelaConsulta() {
         initComponents();
         agendamentoController = new AgendamentoController();
-        agendamentoView = new TelaAgendamento();               
+        agendamentoView = new TelaAgendamento();
+        SwingUtil.centralizaHeaderTabela(tabelaAgendamentosConsulta);
+        centralizaCells(tabelaAgendamentosConsulta, SwingConstants.CENTER);
     }
 
     /**
@@ -35,9 +40,6 @@ public class TelaConsulta extends javax.swing.JFrame {
     private void initComponents() {
 
         txtTituloMedico1 = new javax.swing.JLabel();
-        painelImagemFundo1 = new view.PainelImagemFundo();
-        jLabel1 = new javax.swing.JLabel();
-        txtTituloMedico2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         inputPesquisaAgenda = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
@@ -48,41 +50,12 @@ public class TelaConsulta extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaAgendamentosConsulta = new javax.swing.JTable();
-        painelImagemFundo2 = new view.PainelImagemFundo();
-        jLabel2 = new javax.swing.JLabel();
-        txtTituloMedico3 = new javax.swing.JLabel();
+        painelImagemFundo1 = new view.PainelImagemFundo();
+        txtTituloMedico2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         txtTituloMedico1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         txtTituloMedico1.setText("Agendamento");
-
-        painelImagemFundo1.setImg(new ImageIcon("src/imagemFundo/imagem_fundo2.png"));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logo2.png"))); // NOI18N
-
-        txtTituloMedico2.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        txtTituloMedico2.setForeground(new java.awt.Color(102, 102, 102));
-        txtTituloMedico2.setText("AGENDA MÉDICA");
-
-        javax.swing.GroupLayout painelImagemFundo1Layout = new javax.swing.GroupLayout(painelImagemFundo1);
-        painelImagemFundo1.setLayout(painelImagemFundo1Layout);
-        painelImagemFundo1Layout.setHorizontalGroup(
-            painelImagemFundo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelImagemFundo1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(painelImagemFundo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTituloMedico2, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        painelImagemFundo1Layout.setVerticalGroup(
-            painelImagemFundo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelImagemFundo1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(txtTituloMedico2)
-                .addContainerGap())
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -176,32 +149,32 @@ public class TelaConsulta extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        painelImagemFundo2.setImg(new ImageIcon("src/imagemFundo/imagem_fundo2.png"));
+        painelImagemFundo1.setImg(new ImageIcon("src/view/imagens/fundo/imagem_fundo2.png"));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logoBonzina.png"))); // NOI18N
+        txtTituloMedico2.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        txtTituloMedico2.setForeground(new java.awt.Color(102, 102, 102));
+        txtTituloMedico2.setText("AGENDA MÉDICA");
 
-        txtTituloMedico3.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        txtTituloMedico3.setForeground(new java.awt.Color(102, 102, 102));
-        txtTituloMedico3.setText("AGENDA MÉDICA");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/logoBonzina.png"))); // NOI18N
 
-        javax.swing.GroupLayout painelImagemFundo2Layout = new javax.swing.GroupLayout(painelImagemFundo2);
-        painelImagemFundo2.setLayout(painelImagemFundo2Layout);
-        painelImagemFundo2Layout.setHorizontalGroup(
-            painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelImagemFundo2Layout.createSequentialGroup()
+        javax.swing.GroupLayout painelImagemFundo1Layout = new javax.swing.GroupLayout(painelImagemFundo1);
+        painelImagemFundo1.setLayout(painelImagemFundo1Layout);
+        painelImagemFundo1Layout.setHorizontalGroup(
+            painelImagemFundo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelImagemFundo1Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTituloMedico3, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(painelImagemFundo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTituloMedico2, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        painelImagemFundo2Layout.setVerticalGroup(
-            painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelImagemFundo2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(txtTituloMedico3)
+        painelImagemFundo1Layout.setVerticalGroup(
+            painelImagemFundo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelImagemFundo1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtTituloMedico2)
                 .addContainerGap())
         );
 
@@ -227,15 +200,13 @@ public class TelaConsulta extends javax.swing.JFrame {
                             .addGap(67, 67, 67)
                             .addComponent(btnPesquisar))))
                 .addContainerGap(25, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(painelImagemFundo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(painelImagemFundo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(painelImagemFundo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addComponent(painelImagemFundo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputPesquisaAgenda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -423,14 +394,17 @@ public class TelaConsulta extends javax.swing.JFrame {
     private javax.swing.JTextField inputPesquisaAgenda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private view.PainelImagemFundo painelImagemFundo1;
     private view.PainelImagemFundo painelImagemFundo2;
+    private view.PainelImagemFundo painelImagemFundo3;
     private javax.swing.JTable tabelaAgendamentosConsulta;
+    private javax.swing.JLabel txtTitulo;
+    private javax.swing.JLabel txtTitulo1;
     private javax.swing.JLabel txtTituloMedico1;
     private javax.swing.JLabel txtTituloMedico2;
-    private javax.swing.JLabel txtTituloMedico3;
     // End of variables declaration//GEN-END:variables
 }

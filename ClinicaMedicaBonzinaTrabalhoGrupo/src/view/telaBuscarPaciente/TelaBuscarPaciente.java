@@ -2,10 +2,12 @@
 package view.telaBuscarPaciente;
 
 import controller.PacienteController;
-import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import view.telaAgendamento.TelaAgendamento;
+import view.util.SwingUtil;
+import static view.util.SwingUtil.centralizaCells;
 
 /**
  *
@@ -23,6 +25,8 @@ public class TelaBuscarPaciente extends javax.swing.JFrame {
     public TelaBuscarPaciente() {
         initComponents();
         this.pacienteController = new PacienteController();
+        SwingUtil.centralizaHeaderTabela(tabelaPacientes);
+        centralizaCells(tabelaPacientes, SwingConstants.CENTER);
     }
 
     /**
@@ -111,7 +115,7 @@ public class TelaBuscarPaciente extends javax.swing.JFrame {
         jLabel1.setText("Nome");
 
         btnBuscarPaciente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnBuscarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/lupa.png"))); // NOI18N
+        btnBuscarPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/lupa.png"))); // NOI18N
         btnBuscarPaciente.setOpaque(false);
         btnBuscarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
