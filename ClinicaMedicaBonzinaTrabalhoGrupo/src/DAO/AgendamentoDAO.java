@@ -29,8 +29,8 @@ public class AgendamentoDAO {
 
             preparedStatement.setTime(1, agendamento.getHorarioAgendamento());
             preparedStatement.setDate(2, sqlDate);
-            preparedStatement.setInt(3, agendamento.getIdMedico());
-            preparedStatement.setInt(4, agendamento.getIdPaciente());
+            preparedStatement.setInt(3, agendamento.getMedico().getId());
+            preparedStatement.setInt(4, agendamento.getPaciente().getId());
 
             preparedStatement.executeUpdate();
             preparedStatement.close();

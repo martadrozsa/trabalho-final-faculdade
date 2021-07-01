@@ -63,12 +63,12 @@ public class AgendamentoBusiness {
                 continue;
             }
             
-            int idPaciente = agendamentoOcupado.getIdPaciente();
+            int idPaciente = agendamentoOcupado.getPaciente().getId();
             Paciente paciente = pacienteBusiness.getPacienteById(idPaciente);
             String nomePaciente = paciente.getNome();
-            agendamentoVazio.setNomePaciente(nomePaciente);
+            agendamentoVazio.getPaciente().setNome(nomePaciente);
             
-            agendamentoVazio.setIdPaciente(idPaciente);
+            agendamentoVazio.getPaciente().setId(i);
             
             int idAgendamento = agendamentoOcupado.getIdAgendamento();
             agendamentoVazio.setIdAgendamento(idAgendamento);
@@ -86,7 +86,7 @@ public class AgendamentoBusiness {
             Agendamento currAgendamento = agendamentosDoDia.get(i);
             
             if (agendamento.getHorarioAgendamento().equals(currAgendamento.getHorarioAgendamento()) &&
-                agendamento.getIdMedico() == currAgendamento.getIdMedico()
+                agendamento.getMedico().getId() == currAgendamento.getMedico().getId()
             ) {
                 return currAgendamento;
             }

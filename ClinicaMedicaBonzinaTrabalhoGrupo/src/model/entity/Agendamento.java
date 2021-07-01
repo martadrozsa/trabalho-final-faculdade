@@ -86,59 +86,15 @@ public class Agendamento {
         this.horarioAgendamento = horarioAgendamento;
     }
     
-    public int getIdMedico() {
-        return medico.getId();
-    }
-
-    public void setIdMedico(int idMedico) {
-        medico.setId(idMedico);
-    }
-
-    public String getNomeMedico() {
-        return medico.getNome();
-    }
-
-    public void setNomeMedico(String nomeMedico) {
-        medico.setNome(nomeMedico);
-    }
-
-    public String getEspecialidade() {
-        return medico.getEspecialidade();
-    }
-
-    public void setEspecialidade(String especialidade) {
-        medico.setEspecialidade(especialidade);
-    }
-
-    public Consultorio getConsultorio() {
-        return medico.getConsultorio();
-    }
-
-    public void setConsultorio(Consultorio consultorio) {
-        medico.setConsultorio(consultorio);
+    public Medico getMedico() {
+        return medico;
     }
     
-    public int getIdPaciente() {
-        return paciente.getId();
+    public Paciente getPaciente () {
+        return paciente;
     }
 
-    public void setIdPaciente(int idPaciente) {
-        paciente.setId(idPaciente);
-    }
-    
-    public String getNomePaciente() {
-        return paciente.getNome();
-    }
-
-    public void setNomePaciente(String nomePaciente) {
-        paciente.setNome(nomePaciente); 
-    }
-    
-    public Date getDataNascimento() {
-        return paciente.getDataNascimento();
-    }
-
-    public void setDataNascimento(Date dataNascimento) {
-        paciente.setDataNascimento(dataNascimento);
-    }
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }   
 }

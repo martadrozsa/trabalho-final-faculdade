@@ -37,18 +37,18 @@ public class AgendamentoController {
             Agendamento agendamento = listaAgendamentos.get(i);
             
 
-            Consultorio cons = agendamento.getConsultorio();
+            Consultorio cons = agendamento.getMedico().getConsultorio();
             String consultorio = cons.getNomeFormatado();          
             
             matrizAgendamentos[i][HORARIO.ordinal()] = agendamento.getHorarioAgendamento()+ "";
-            matrizAgendamentos[i][NOME_MEDICO.ordinal()] = agendamento.getNomeMedico()+ "";
-            matrizAgendamentos[i][ESPECIALIDADE.ordinal()] = agendamento.getEspecialidade() + "";
+            matrizAgendamentos[i][NOME_MEDICO.ordinal()] = agendamento.getMedico().getNome()+ "";
+            matrizAgendamentos[i][ESPECIALIDADE.ordinal()] = agendamento.getMedico().getEspecialidade() + "";
             matrizAgendamentos[i][CONSULTORIO.ordinal()] = consultorio;
-            matrizAgendamentos[i][NOME_PACIENTE.ordinal()] = agendamento.getNomePaciente() + "";
+            matrizAgendamentos[i][NOME_PACIENTE.ordinal()] = agendamento.getPaciente().getNome() + "";
             
-            matrizAgendamentos[i][ID_MEDICO.ordinal()] = agendamento.getIdMedico() + "";
+            matrizAgendamentos[i][ID_MEDICO.ordinal()] = agendamento.getMedico().getId() + "";
             matrizAgendamentos[i][ID_AGENDAMENTO.ordinal()] = agendamento.getIdAgendamento() + "";
-            matrizAgendamentos[i][ID_PACIENTE.ordinal()] = agendamento.getIdPaciente() + "";
+            matrizAgendamentos[i][ID_PACIENTE.ordinal()] = agendamento.getPaciente().getId() + "";
         }
 
         return matrizAgendamentos;
@@ -65,18 +65,18 @@ public class AgendamentoController {
             Agendamento agendamento = listaAgendamentos.get(i);
                       
             
-            Consultorio cons = agendamento.getConsultorio();
+            Consultorio cons = agendamento.getMedico().getConsultorio();
             String consultorio = cons.getNomeFormatado();
 
             matrizAgendamentos[i][HORARIO.ordinal()] = agendamento.getHorarioAgendamento()+ "";
-            matrizAgendamentos[i][NOME_MEDICO.ordinal()] = agendamento.getNomeMedico()+ "";            
-            matrizAgendamentos[i][ESPECIALIDADE.ordinal()] = agendamento.getEspecialidade() + "";
+            matrizAgendamentos[i][NOME_MEDICO.ordinal()] = agendamento.getMedico().getNome() + "";            
+            matrizAgendamentos[i][ESPECIALIDADE.ordinal()] = agendamento.getMedico().getEspecialidade() + "";
             matrizAgendamentos[i][CONSULTORIO.ordinal()] = consultorio;            
-            matrizAgendamentos[i][NOME_PACIENTE.ordinal()] = agendamento.getNomePaciente() + "";
-            matrizAgendamentos[i][ID_MEDICO.ordinal()] = agendamento.getIdMedico() + "";
+            matrizAgendamentos[i][NOME_PACIENTE.ordinal()] = agendamento.getPaciente().getNome() + "";
+            matrizAgendamentos[i][ID_MEDICO.ordinal()] = agendamento.getMedico().getId() + "";
             matrizAgendamentos[i][ID_AGENDAMENTO.ordinal()] = agendamento.getIdAgendamento() + "";
-            matrizAgendamentos[i][ID_PACIENTE.ordinal()] = agendamento.getIdPaciente() + "";
-            matrizAgendamentos[i][DATA_NASCIMENTO.ordinal()] = agendamento.getDataNascimento() + "";
+            matrizAgendamentos[i][ID_PACIENTE.ordinal()] = agendamento.getPaciente().getId() + "";
+            matrizAgendamentos[i][DATA_NASCIMENTO.ordinal()] = agendamento.getPaciente().getDataNascimento() + "";
             matrizAgendamentos[i][DATA_AGENDAMENTO.ordinal()] = agendamento.getDataAgendamento() + "";
         }
         return matrizAgendamentos;
