@@ -1,7 +1,8 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import model.business.PacienteBusiness;
 import model.entity.Paciente;
@@ -18,8 +19,8 @@ public class PacienteController {
         return pacienteBusiness.insertPacienteIntoBD(paciente);
     }
 
-    public boolean editar(String nome, Date dataNascimento, String endereco, String telefone) {
-        Paciente paciente = new Paciente(dataNascimento, endereco, nome, telefone);
+    public boolean editar(String nome, Date dataNascimento, String endereco, int id, String telefone) {
+        Paciente paciente = new Paciente(dataNascimento, endereco, id, nome, telefone);
         return pacienteBusiness.updatePacienteInBD(paciente);
     }
 
@@ -65,14 +66,15 @@ public class PacienteController {
         return resulMatrizPacientes;
     }
     public List<Paciente> tabelaTeste() {
-        Date data = new Date();
-        Paciente paciente1 = new Paciente(data, "rua 0", 0, "tico doido", "333311122");
-        Paciente paciente2 = new Paciente(data, "rua 1", 1, "maria corona", "99999999");
-        Paciente paciente3 = new Paciente(data, "rua 2", 2, "marco loco", "999921111");
-        Paciente paciente4 = new Paciente(data, "rua 3", 3, "antonio lindo", "99992221");
-        Paciente paciente5 = new Paciente(data, "rua 4", 4, "amanda gabriela", "888818888");
-        Paciente paciente6 = new Paciente(data, "rua 5", 5, "anna julia", "999111222");
-        Paciente paciente7 = new Paciente(data, "rua 6", 6, "kelly souza", "222111333");
+        LocalDate datal = LocalDate.of(2021, 06, 28);
+        Date data = Date.valueOf(datal);
+        Paciente paciente1 = new Paciente(data, "rua 0", 0, "tico doido", "4433331122");
+        Paciente paciente2 = new Paciente(data, "rua 1", 1, "maria corona", "44123456789");
+        Paciente paciente3 = new Paciente(data, "rua 2", 2, "marco loco", "44899991111");
+        Paciente paciente4 = new Paciente(data, "rua 3", 3, "antonio lindo", "44899992221");
+        Paciente paciente5 = new Paciente(data, "rua 4", 4, "amanda gabriela", "4488818888");
+        Paciente paciente6 = new Paciente(data, "rua 5", 5, "anna julia", "4499111222");
+        Paciente paciente7 = new Paciente(data, "rua 6", 6, "kelly souza", "4422111333");
         List<Paciente> lista = new ArrayList<>();
         lista.add(paciente1);
         lista.add(paciente2);
