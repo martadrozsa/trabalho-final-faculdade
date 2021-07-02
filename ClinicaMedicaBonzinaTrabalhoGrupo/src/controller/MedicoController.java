@@ -23,7 +23,7 @@ public class MedicoController {
         return medicoBusiness.insertMedicoIntoBD(medico);
     }
 
-    public boolean editar(int crm, String especialidade, String nomePeriodo, String nomeConsultorio, String nome, String telefone) {
+    public boolean editar(int crm, String especialidade, String nomePeriodo, String nomeConsultorio, int id, String nome, String telefone) {
         Periodo periodo = Periodo.valueOf(nomePeriodo);
         Consultorio consultorio = Consultorio.valueOf(nomeConsultorio);
         
