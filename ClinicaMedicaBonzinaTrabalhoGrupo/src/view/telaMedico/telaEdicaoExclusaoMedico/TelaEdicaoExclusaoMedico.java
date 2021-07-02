@@ -6,7 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import view.Mensagem;
 
 public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
 
@@ -14,6 +16,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
     DefaultListModel modeloLista;
     String[][] matrizMedicos;
     Map<Integer, String> idsCapturados;
+    
     int indiceLista;
     
     
@@ -399,9 +402,19 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
 
         btnApagar.setBackground(new java.awt.Color(255, 0, 0));
         btnApagar.setText("Apagar");
+        btnApagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApagarActionPerformed(evt);
+            }
+        });
 
         btnEditar.setBackground(new java.awt.Color(255, 255, 102));
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
 
@@ -529,6 +542,75 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
         cmbPeriodo.setSelectedIndex(-1);
         
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
+        
+        String fromMap= idsCapturados.get(indiceLista);
+        int idApagar = Integer.parseInt(fromMap);
+        System.out.println(idApagar); //teste pra ver se o id vem certo, FUNCIONANDO        
+        //controlador.apagar(IdApagar); ----------liberar o metodo 
+    }//GEN-LAST:event_btnApagarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        try {
+            int id;
+            String nome = "";
+            int crm = 0;
+            String especialidade = "";
+            String periodo = "";
+            String consultorio = "";
+            String telefone = "";
+            
+            if(getIdFromMap() != -1) {
+                id = getIdFromMap();
+            } else {
+                throw new Mensagem("Erro no metodo getIdFromMap");
+            }
+            
+            if(txtNome.getText().length() > 6) {
+                nome = txtNome.getText();
+            } else {
+                throw new Mensagem("O nome inserido é muito pequeno, corrija!");
+            }
+            
+            if(txtCRM.getText().length() > 3) {
+                crm = Integer.parseInt(txtCRM.getText());
+            } else {
+                throw new Mensagem("O CRM inserido é muito curto, corrija");
+            }
+            
+            if(txtEspecialidade.getText().length() > 5) {
+                especialidade = txtEspecialidade.getText();
+            } else {
+                throw new Mensagem("A especialidade inserida é muito curta, corrija!");
+            }
+            
+            if(cmbPeriodo.getSelectedIndex() == 0) {
+                periodo = "MATUTINO";
+            } else if(cmbPeriodo.getSelectedIndex() == 1) {
+                periodo = "VESPERTINO";
+            } else {
+                throw new Mensagem("Você deve selecionar um Periodo!");
+            }
+            
+            if(cmbConsultorio.getSelectedIndex() == 0) {
+                consultorio = "CONSULTORIO_1";
+            } else if(cmbConsultorio.getSelectedIndex() == 1) {
+                consultorio = "CONSULTORIO_2";
+            } else {
+                throw new Mensagem("Você deve selecionar um Consulório");
+            }
+            
+            if(controlador.editar(crm, especialidade, periodo, consultorio, id, nome, telefone)) {
+                JOptionPane.showMessageDialog(null, "Editado com sucesso");
+            } else {
+                throw new Mensagem("Falha no metodo do controlador");
+            }
+                         
+        } catch(Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage(), "Erro", 0);
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
