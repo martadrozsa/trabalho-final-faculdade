@@ -434,7 +434,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
 
         pnlPesquisa.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtPesquisa.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtPesquisa.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         txtPesquisa.setText("Insira o nome e aperte enter...");
         txtPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
