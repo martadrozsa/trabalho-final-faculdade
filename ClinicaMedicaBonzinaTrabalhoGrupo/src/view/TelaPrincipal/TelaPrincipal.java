@@ -4,16 +4,21 @@ import javax.swing.ImageIcon;
 import view.telaAgendamento.TelaAgendamento;
 import view.telaConsultaAgendamento.TelaConsulta;
 import view.telaMedico.telaCadastroMedico.TelaCadastroMedico;
+import view.telaMedico.telaEdicaoExclusaoMedico.TelaEdicaoExclusaoMedico;
 import view.telaPaciente.telaCadastroPaciente.TelaCadastroPaciente;
+import view.telaPaciente.telaEdicaoExclusaoPaciente.TelaEdicaoExclusaoPaciente;
 import view.telaSobre.TelaSobre;
 
 public class TelaPrincipal extends javax.swing.JFrame {
     
+    //deveria estar em cada botão
     public TelaAgendamento novoAgendamento;
     public TelaConsulta consultarAgendamento;
     public TelaCadastroMedico cadastroMedico;
     public TelaCadastroPaciente cadastraPaciente;
     public TelaSobre sobre;
+    public TelaEdicaoExclusaoPaciente edicaoExclusaoPaciente;
+    public TelaEdicaoExclusaoMedico edicaoExclusaoMedico;
 
 
     public TelaPrincipal() {
@@ -23,6 +28,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         cadastroMedico = new TelaCadastroMedico();
         cadastraPaciente = new TelaCadastroPaciente();
         sobre = new TelaSobre();
+        edicaoExclusaoPaciente = new TelaEdicaoExclusaoPaciente();
+        edicaoExclusaoMedico = new TelaEdicaoExclusaoMedico();
     }
 
     /**
@@ -34,16 +41,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         painelImagemFundo = new view.PainelImagemFundo();
         txtLogo = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnAgendaConsulta = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnEditarExcluirPaciente = new javax.swing.JButton();
         btnConsultaAgenda = new javax.swing.JButton();
         btnSobre = new javax.swing.JButton();
         btnCadastraPaciente = new javax.swing.JButton();
         btnCadastraMedico = new javax.swing.JButton();
+        btnEditarExcluirMedico = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -72,7 +92,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("jButton1");
+        btnEditarExcluirPaciente.setText("Editar Paciente");
+        btnEditarExcluirPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarExcluirPacienteActionPerformed(evt);
+            }
+        });
 
         btnConsultaAgenda.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         btnConsultaAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/consultar.png"))); // NOI18N
@@ -110,6 +135,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnEditarExcluirMedico.setText("Editar Médico");
+        btnEditarExcluirMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarExcluirMedicoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -120,7 +152,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addComponent(btnCadastraMedico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnSobre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnEditarExcluirPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnEditarExcluirMedico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,8 +170,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addComponent(btnEditarExcluirPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEditarExcluirMedico, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout painelImagemFundoLayout = new javax.swing.GroupLayout(painelImagemFundo);
@@ -159,7 +193,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(txtLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,6 +214,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgendaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendaConsultaActionPerformed
+        
         novoAgendamento.mostraTelaModoAgendamento();
     }//GEN-LAST:event_btnAgendaConsultaActionPerformed
 
@@ -202,6 +237,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnEditarExcluirPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarExcluirPacienteActionPerformed
+        edicaoExclusaoPaciente.setVisible(true);
+    }//GEN-LAST:event_btnEditarExcluirPacienteActionPerformed
+
+    private void btnEditarExcluirMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarExcluirMedicoActionPerformed
+        edicaoExclusaoMedico.setVisible(true);
+    }//GEN-LAST:event_btnEditarExcluirMedicoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,10 +286,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastraMedico;
     private javax.swing.JButton btnCadastraPaciente;
     private javax.swing.JButton btnConsultaAgenda;
+    private javax.swing.JButton btnEditarExcluirMedico;
+    private javax.swing.JButton btnEditarExcluirPaciente;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSobre;
-    private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private view.PainelImagemFundo painelImagemFundo;
     private javax.swing.JLabel txtLogo;
     // End of variables declaration//GEN-END:variables

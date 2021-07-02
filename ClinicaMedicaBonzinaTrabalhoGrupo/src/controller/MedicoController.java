@@ -44,7 +44,7 @@ public class MedicoController {
         
         List<Medico> minhaLista = medicoBusiness.getMinhaLista();
         
-        String[][] matrizMedicos = new String[minhaLista.size()][5];
+        String[][] matrizMedicos = new String[minhaLista.size()][7];
         
         for (int i = 0; i < minhaLista.size(); i++) {
             matrizMedicos[i][0] = minhaLista.get(i).getId() + "";
@@ -62,7 +62,7 @@ public class MedicoController {
         
         List<Medico> minhaLista = medicoBusiness.getMinhaListaByNome(busca);
         
-        String[][] matrizMedicos = new String[minhaLista.size()][5];
+        String[][] matrizMedicos = new String[minhaLista.size()][7];
         
         for (int i = 0; i < minhaLista.size(); i++) {
             matrizMedicos[i][0] = minhaLista.get(i).getId() + "";

@@ -118,7 +118,7 @@ public class PacienteDAO {
     public List<Paciente> getMinhaListByNome(String nome) {
         // database, me entrega todos as linhas na tabela paciente que tem o nome parecido com "nome".
         String termoBusca = "%" + nome + "%";
-        String queryStatement = "SELECT * FROM paciente WHERE nome LIKE ?";
+        String queryStatement = "SELECT * FROM paciente WHERE nome LIKE ? ORDER BY nome";
 
         try {
             PreparedStatement preparedStatement = mySQLConn.getConnection().prepareStatement(queryStatement);

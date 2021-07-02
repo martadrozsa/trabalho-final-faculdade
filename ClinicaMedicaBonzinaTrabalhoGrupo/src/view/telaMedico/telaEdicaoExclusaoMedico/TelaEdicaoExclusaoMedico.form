@@ -139,7 +139,7 @@
               <Component id="pnlCampos" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="pnlEditar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="207" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -251,7 +251,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="lblPeriodo1" min="-2" pref="86" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cmbPeriodo" pref="156" max="32767" attributes="0"/>
+                                  <Component id="cmbPeriodo" pref="537" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
