@@ -122,7 +122,7 @@ public class TelaCadastroPaciente extends javax.swing.JFrame {
             if (this.inputFone.getText().length() <= 0) {
                 throw new Mensagem("Telefone deve ser numero e maior que zero.");
             } else {
-                telefone = DateUtil.conversorTelefone(this.inputFone.getText());
+//                telefone = DateUtil.conversorTelefone(this.inputFone.getText());
             }
 
             // envia os dados para o Controlador cadastrar

@@ -9,11 +9,19 @@ import java.util.logging.Logger;
 
 public class MySQLConnection {
 
-    private Connection connection;
-    private Statement statement;
+    private static boolean isInitialized = false;
+    private static Connection connection;
+    private static Statement statement;
 
     public MySQLConnection() {
-
+        if (isInitialized != true) {
+            initializeConnection();
+            isInitialized = true;
+        }
+    }
+    
+    
+    private static void initializeConnection() {
         try {
             // Carregamento do JDBC Driver
             String driver = "com.mysql.cj.jdbc.Driver";
