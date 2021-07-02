@@ -1,21 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view.telaMedico.telaCadastroMedico;
 
-/**
- *
- * @author Marta
- */
+import controller.MedicoController;
+import javax.swing.JOptionPane;
+import view.Mensagem;
+
 public class TelaCadastroMedico extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaCadastroMedico
-     */
+    private MedicoController controlador; //Liga ao Controller
+
     public TelaCadastroMedico() {
         initComponents();
+        this.controlador = new MedicoController(); //Carrega controlador de médico
     }
 
     /**
@@ -27,21 +22,245 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        inputCRM = new javax.swing.JTextField();
+        inputNome = new javax.swing.JTextField();
+        inputEspecialidade = new javax.swing.JTextField();
+        inputTelefone = new javax.swing.JTextField();
+        bmed_cadastrar = new javax.swing.JButton();
+        bmed_cancelar = new javax.swing.JButton();
+        comboBoxPeriodo = new javax.swing.JComboBox<>();
+        comboBoxConsultorio = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Nome:");
+
+        jLabel2.setText("CRM:");
+
+        jLabel3.setText("Especialidade");
+
+        jLabel4.setText("Período");
+
+        jLabel5.setText("Telefone");
+
+        jLabel6.setText("Consultório");
+
+        bmed_cadastrar.setText("Cadastrar");
+        bmed_cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bmed_cadastrarActionPerformed(evt);
+            }
+        });
+
+        bmed_cancelar.setText("Cancelar");
+        bmed_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bmed_cancelarActionPerformed(evt);
+            }
+        });
+
+        comboBoxPeriodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matutino", "Vespertino" }));
+        comboBoxPeriodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxPeriodoActionPerformed(evt);
+            }
+        });
+
+        comboBoxConsultorio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Consultório 1", "Consultório 2" }));
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setText("Cadastro Médico");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bmed_cancelar)
+                                .addGap(18, 18, 18)
+                                .addComponent(bmed_cadastrar))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(77, 77, 77)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(inputNome, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(inputCRM, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(inputEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(inputTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(comboBoxPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(45, 45, 45)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(comboBoxConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(jLabel7)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputNome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputCRM, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bmed_cancelar)
+                    .addComponent(bmed_cadastrar))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bmed_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmed_cadastrarActionPerformed
+
+         try {
+            // recebendo e validando dados da interface gráfica
+            
+            //ComboBox
+            String periodoComboBox = (String) this.comboBoxPeriodo.getSelectedItem();
+            String consultorioComboBox = (String) this.comboBoxConsultorio.getSelectedItem();
+            //FimBomboBox
+            
+            String nome = "";
+            int crm = 0;
+            String especialidade = "";
+            String periodo = "";
+            String consultorio = "";
+            String telefone = "";
+            
+           
+            if (this.inputNome.getText().length() < 2) {
+                throw new Mensagem("Nome deve conter ao menos 2 caracteres.");
+            } else {
+                nome = this.inputNome.getText();
+            }
+                       
+            if (this.inputCRM.getText().length() <= 0) {
+                throw new Mensagem("Informe um número de CRM válido");
+            } else {
+                crm = Integer.parseInt(this.inputCRM.getText());
+            }
+
+            if (this.inputEspecialidade.getText().length() < 2) {
+                throw new Mensagem("Especialidade deve conter ao menos 2 caracteres.");
+            } else {
+                especialidade = this.inputEspecialidade.getText();
+            }
+            
+            if (this.inputTelefone.getText().length() <= 0) {
+                throw new Mensagem("Telefone deve ser um número e conter 9 dígitos.");
+            } else {
+                telefone = this.inputTelefone.getText();
+            }
+            
+            //ComboBox
+            if (this.comboBoxPeriodo.getSelectedIndex() == -1) {
+                throw new Mensagem("Selecione o período correspondente.");
+            } else {
+                periodo = (String) this.comboBoxPeriodo.getSelectedItem();
+            }
+            
+            if (this.comboBoxConsultorio.getSelectedIndex() == -1) {
+                throw new Mensagem("Selecione o consultório correspondente.");
+            } else {
+                consultorio = (String) this.comboBoxConsultorio.getSelectedItem();
+            }
+            //FimBomboBox
+            
+            
+           
+            periodo = periodo.toUpperCase();
+                     
+            if (consultorio.equals("Consultório 1")) {
+                consultorio = "CONSULTORIO_1";
+            }
+            else if (consultorio.equals("Consultório 2")) {
+                consultorio = "CONSULTORIO_2";
+            }
+
+
+            //envia os dados para o Controlador cadastrar
+            if (this.controlador.cadastrar(crm, especialidade, periodo, consultorio, nome, telefone)) {
+                JOptionPane.showMessageDialog(rootPane, "Médico cadastrado com sucesso!");
+
+                this.inputNome.setText("");
+                this.inputCRM.setText("");
+                this.inputEspecialidade.setText("");
+                this.comboBoxPeriodo.setSelectedIndex(-1);
+                this.comboBoxConsultorio.setSelectedIndex(-1);
+                this.inputTelefone.setText("");
+            }
+
+            System.out.println(this.controlador.getMinhaLista().toString());
+
+        } catch (Mensagem erro) {
+            JOptionPane.showMessageDialog(null, erro.getMessage());
+
+        } catch (NumberFormatException erro2) {
+            JOptionPane.showMessageDialog(null, "Informe um número");
+        }
+    }//GEN-LAST:event_bmed_cadastrarActionPerformed
+
+    private void bmed_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmed_cancelarActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_bmed_cancelarActionPerformed
+
+    private void comboBoxPeriodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxPeriodoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxPeriodoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -57,17 +276,23 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroMedico.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroMedico.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroMedico.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroMedico.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -79,5 +304,21 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bmed_cadastrar;
+    private javax.swing.JButton bmed_cancelar;
+    private javax.swing.JComboBox<String> comboBoxConsultorio;
+    private javax.swing.JComboBox<String> comboBoxPeriodo;
+    private javax.swing.JTextField inputCRM;
+    private javax.swing.JTextField inputEspecialidade;
+    private javax.swing.JTextField inputNome;
+    private javax.swing.JTextField inputTelefone;
+    private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }
