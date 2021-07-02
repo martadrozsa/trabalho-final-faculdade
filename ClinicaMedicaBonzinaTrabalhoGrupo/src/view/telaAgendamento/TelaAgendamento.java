@@ -86,6 +86,10 @@ public class TelaAgendamento extends javax.swing.JFrame {
         inputDataNascimento.setText("");
     }
     
+    
+
+    
+    
     // verifica se o paciente tem agendamento no mesmo dia e mesmo horário
     private boolean isAgendamentoLivreParaPaciente(String horarioAgendamento, String nomePaciente){
         for (int i = 0; i < matrizAgendamento.length; i++) {

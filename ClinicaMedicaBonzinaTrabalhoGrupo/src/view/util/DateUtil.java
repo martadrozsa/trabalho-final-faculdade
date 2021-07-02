@@ -30,6 +30,5 @@ public class DateUtil {
         }
         
         return data;
-    }
-    
+    }    
 }

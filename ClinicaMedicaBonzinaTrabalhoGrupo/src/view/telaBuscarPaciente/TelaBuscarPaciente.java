@@ -9,16 +9,9 @@ import view.telaAgendamento.TelaAgendamento;
 import view.util.SwingUtil;
 import static view.util.SwingUtil.centralizaCells;
 
-/**
- *
- * @author Marta
- */
-public class TelaBuscarPaciente extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaBuscarPaciente
-     */
-    
+public class TelaBuscarPaciente extends javax.swing.JFrame {
+   
     private PacienteController pacienteController;
     private TelaAgendamento agendamentoView;
             
@@ -27,6 +20,12 @@ public class TelaBuscarPaciente extends javax.swing.JFrame {
         this.pacienteController = new PacienteController();
         SwingUtil.centralizaHeaderTabela(tabelaPacientes);
         centralizaCells(tabelaPacientes, SwingConstants.CENTER);
+    }
+    
+    public TelaBuscarPaciente(TelaAgendamento agendamentoView) {
+        this.agendamentoView = agendamentoView;
+        limpaTabela();
+        setVisible(true);
     }
 
     /**
@@ -206,6 +205,12 @@ public class TelaBuscarPaciente extends javax.swing.JFrame {
             return true;
     }
     
+    public void mostrar(TelaAgendamento agendamentoView) {
+        this.agendamentoView = agendamentoView;
+        limpaTabela();
+        setVisible(true);
+    }
+    
     private void limpaTabela() {
         // inicializa a matriz  com strings vazias.
         String[][] matrizVazia = new String[4][5];
@@ -219,12 +224,6 @@ public class TelaBuscarPaciente extends javax.swing.JFrame {
            matrizVazia[i][4] = "";
         }
         preencheTabela(matrizVazia);
-    }
-    
-    public void mostrar(TelaAgendamento agendamentoView) {
-        this.agendamentoView = agendamentoView;
-        limpaTabela();
-        setVisible(true);
     }
     
     
