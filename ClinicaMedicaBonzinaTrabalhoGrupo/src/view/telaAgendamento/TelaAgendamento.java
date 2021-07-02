@@ -47,8 +47,7 @@ public class TelaAgendamento extends javax.swing.JFrame {
         
         SwingUtil.centralizaHeaderTabela(tabelaAgendamentos);
         centralizaCells(tabelaAgendamentos, SwingConstants.CENTER);
-        
-        
+
     }
     
     public void mostraTelaModoReagendamento() {

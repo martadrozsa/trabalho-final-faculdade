@@ -1,5 +1,6 @@
 package view.telaMedico.telaEdicaoExclusaoMedico;
 
+import javax.swing.ImageIcon;
 import controller.MedicoController;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,18 +14,19 @@ import view.util.TelefoneUtil;
 
 public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
 
-    MedicoController controlador;
+    MedicoController medicoControlador;
     DefaultListModel modeloLista;
     String[][] matrizMedicos;
     Map<Integer, String> idsCapturados;
     int indiceLista =-1;
+    
 
     public TelaEdicaoExclusaoMedico() {
         
         initComponents();
         this.setLocationRelativeTo(null);
         
-        controlador = new MedicoController();
+        medicoControlador = new MedicoController();
         modeloLista = new DefaultListModel();
         idsCapturados = new HashMap<>();
 
@@ -68,9 +70,9 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
         //medicos cadastrados, pra exibir a telaTabela ja pega todos do banco
         
         if (flag) {
-            matrizMedicos = controlador.getMinhaMatrizTexto(txtPesquisa.getText());
+            matrizMedicos = medicoControlador.getMinhaMatrizTexto(txtPesquisa.getText());
         } else {
-            matrizMedicos = controlador.getMinhaMatrizTexto();
+            matrizMedicos = medicoControlador.getMinhaMatrizTexto();
         }
         for (int i = 0; i < matrizMedicos.length; i++) {
             String capturaId = matrizMedicos[i][0];
@@ -192,10 +194,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
         telaTabela = new javax.swing.JFrame();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaGrafica = new javax.swing.JTable();
-        pnlPesquisa = new javax.swing.JPanel();
-        txtPesquisa = new javax.swing.JTextField();
-        btnPesquisar = new javax.swing.JButton();
-        listaPesquisa = new javax.swing.JList<>();
+        jPanel1 = new javax.swing.JPanel();
         pnlCampos = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
         lblCRM = new javax.swing.JLabel();
@@ -214,6 +213,14 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
         btnApagar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        pnlPesquisa = new javax.swing.JPanel();
+        txtPesquisa = new javax.swing.JTextField();
+        btnPesquisar = new javax.swing.JButton();
+        listaPesquisa = new javax.swing.JList<>();
+        btnCadastrar = new javax.swing.JButton();
+        painelImagemFundo2 = new view.PainelImagemFundo();
+        txtTitulo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         telaTabela.setMinimumSize(new java.awt.Dimension(630, 256));
 
@@ -271,83 +278,39 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gerenciar Médico");
+        setResizable(false);
 
-        pnlPesquisa.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtPesquisa.setText("Insira o nome e aperte enter...");
-        txtPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtPesquisaMouseClicked(evt);
-            }
-        });
-        txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPesquisaActionPerformed(evt);
-            }
-        });
-
-        btnPesquisar.setText("Listar");
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarActionPerformed(evt);
-            }
-        });
-
-        listaPesquisa.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listaPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listaPesquisaMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlPesquisaLayout = new javax.swing.GroupLayout(pnlPesquisa);
-        pnlPesquisa.setLayout(pnlPesquisaLayout);
-        pnlPesquisaLayout.setHorizontalGroup(
-            pnlPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPesquisaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(listaPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPesquisar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pnlPesquisaLayout.setVerticalGroup(
-            pnlPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPesquisaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPesquisar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(listaPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        pnlCampos.setBackground(new java.awt.Color(204, 204, 255));
+        pnlCampos.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCampos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         lblNome.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        lblNome.setText("Nome:");
+        lblNome.setText("Nome");
 
         lblCRM.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        lblCRM.setText("CRM:");
+        lblCRM.setText("CRM");
 
         lblEspecialidade.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        lblEspecialidade.setText("Especialidade:");
+        lblEspecialidade.setText("Especialidade");
 
         lblConsultorio.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        lblConsultorio.setText("Consultório:");
+        lblConsultorio.setText("Consultório");
 
         lblTelefone.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        lblTelefone.setText("Telefone:");
+        lblTelefone.setText("Telefone");
 
         lblPeriodo1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        lblPeriodo1.setText("Período:");
+        lblPeriodo1.setText("Período");
 
+        cmbPeriodo.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         cmbPeriodo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matutino", "Vespertino" }));
+        cmbPeriodo.setSelectedIndex(-1);
 
+        cmbConsultorio.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         cmbConsultorio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Consultório 1", "Consultório 2" }));
+        cmbConsultorio.setSelectedIndex(-1);
 
         try {
             txtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
@@ -362,33 +325,26 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
             .addGroup(pnlCamposLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblCRM, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPeriodo1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(pnlCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlCamposLayout.createSequentialGroup()
-                        .addGroup(pnlCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCRM, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pnlCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCRM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnlCamposLayout.createSequentialGroup()
-                        .addComponent(lblEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCamposLayout.createSequentialGroup()
-                        .addGroup(pnlCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlCamposLayout.createSequentialGroup()
-                                .addComponent(lblPeriodo1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmbPeriodo, 0, 156, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(pnlCamposLayout.createSequentialGroup()
-                                .addComponent(lblConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cmbConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtTelefone))))
-                .addContainerGap())
+                        .addComponent(cmbPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(400, 400, 400)
+                        .addComponent(lblConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 673, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCRM, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(cmbConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         pnlCamposLayout.setVerticalGroup(
             pnlCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,30 +352,34 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(pnlCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCRM)
-                    .addComponent(txtCRM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCRM, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEspecialidade)
-                    .addComponent(txtEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEspecialidade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(pnlCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblConsultorio)
                     .addComponent(lblPeriodo1)
-                    .addComponent(cmbPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTelefone)
-                    .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                    .addComponent(cmbPeriodo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbConsultorio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlCamposLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlCamposLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblTelefone))
+                    .addGroup(pnlCamposLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        pnlEditar.setBackground(new java.awt.Color(204, 255, 204));
+        pnlEditar.setBackground(new java.awt.Color(255, 255, 255));
 
+        btnLimpar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -427,7 +387,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
             }
         });
 
-        btnApagar.setBackground(new java.awt.Color(255, 0, 0));
+        btnApagar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         btnApagar.setText("Apagar");
         btnApagar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -435,7 +395,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
             }
         });
 
-        btnEditar.setBackground(new java.awt.Color(255, 255, 102));
+        btnEditar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -443,6 +403,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
             }
         });
 
+        btnCancelar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         btnCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout pnlEditarLayout = new javax.swing.GroupLayout(pnlEditar);
@@ -450,53 +411,164 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
         pnlEditarLayout.setHorizontalGroup(
             pnlEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEditarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnApagar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLimpar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(30, 30, 30)
                 .addComponent(btnCancelar)
-                .addContainerGap())
+                .addGap(92, 92, 92)
+                .addComponent(btnApagar)
+                .addGap(79, 79, 79)
+                .addComponent(btnLimpar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addComponent(btnEditar))
         );
         pnlEditarLayout.setVerticalGroup(
             pnlEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEditarLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(pnlEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLimpar)
-                    .addComponent(btnApagar)
-                    .addComponent(btnEditar)
-                    .addComponent(btnCancelar))
+                    .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        pnlPesquisa.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtPesquisa.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        txtPesquisa.setText("Insira o nome e aperte enter...");
+        txtPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtPesquisaMouseClicked(evt);
+            }
+        });
+        txtPesquisa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPesquisaActionPerformed(evt);
+            }
+        });
+
+        btnPesquisar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        btnPesquisar.setText("Listar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
+
+        listaPesquisa.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        listaPesquisa.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listaPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaPesquisaMouseClicked(evt);
+            }
+        });
+
+        btnCadastrar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        btnCadastrar.setText("Cadastrar");
+
+        javax.swing.GroupLayout pnlPesquisaLayout = new javax.swing.GroupLayout(pnlPesquisa);
+        pnlPesquisa.setLayout(pnlPesquisaLayout);
+        pnlPesquisaLayout.setHorizontalGroup(
+            pnlPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPesquisaLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(pnlPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlPesquisaLayout.createSequentialGroup()
+                        .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(btnPesquisar)
+                        .addGap(69, 69, 69)
+                        .addComponent(btnCadastrar))
+                    .addComponent(listaPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(413, Short.MAX_VALUE))
+        );
+        pnlPesquisaLayout.setVerticalGroup(
+            pnlPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPesquisaLayout.createSequentialGroup()
+                .addContainerGap(47, Short.MAX_VALUE)
+                .addGroup(pnlPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(listaPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        painelImagemFundo2.setImg(new ImageIcon("src/view/imagens/fundo/imagem_fundo2.png"));
+
+        txtTitulo.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        txtTitulo.setForeground(new java.awt.Color(102, 102, 102));
+        txtTitulo.setText("GERENCIAR MÉDICO");
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/logoBonzina.png"))); // NOI18N
+
+        javax.swing.GroupLayout painelImagemFundo2Layout = new javax.swing.GroupLayout(painelImagemFundo2);
+        painelImagemFundo2.setLayout(painelImagemFundo2Layout);
+        painelImagemFundo2Layout.setHorizontalGroup(
+            painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelImagemFundo2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelImagemFundo2Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        painelImagemFundo2Layout.setVerticalGroup(
+            painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelImagemFundo2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtTitulo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(painelImagemFundo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnlEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(38, 38, 38)
+                            .addComponent(pnlPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(54, 54, 54)
+                            .addComponent(pnlCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(painelImagemFundo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pnlCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(pnlEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlCampos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlPesquisa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(pnlCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 850, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
@@ -580,7 +652,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
 
             if (retornoConfirmacao == 0) {
 
-                if (controlador.apagar(getIdFromMap())) {
+                if (medicoControlador.apagar(getIdFromMap())) {
                     JOptionPane.showMessageDialog(null, "Médico excluído com sucesso", "Apagado!", 1);
                 } else {
                     throw new Mensagem("Falha no metodo do controlador");
@@ -666,7 +738,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
 
             if (retornoConfirmacao == 0) {
 
-                if (controlador.editar(crm, especialidade, periodo, consultorio, id, nome, telefone)) {
+                if (medicoControlador.editar(crm, especialidade, periodo, consultorio, id, nome, telefone)) {
 
                     JOptionPane.showMessageDialog(null, "Médico editado com sucesso", "Editado!", 1);
 
@@ -728,12 +800,15 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApagar;
+    private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JComboBox<String> cmbConsultorio;
     private javax.swing.JComboBox<String> cmbPeriodo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCRM;
     private javax.swing.JLabel lblConsultorio;
@@ -742,6 +817,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
     private javax.swing.JLabel lblPeriodo1;
     private javax.swing.JLabel lblTelefone;
     private javax.swing.JList<String> listaPesquisa;
+    private view.PainelImagemFundo painelImagemFundo2;
     private javax.swing.JPanel pnlCampos;
     private javax.swing.JPanel pnlEditar;
     private javax.swing.JPanel pnlPesquisa;
@@ -752,5 +828,6 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPesquisa;
     private javax.swing.JFormattedTextField txtTelefone;
+    private javax.swing.JLabel txtTitulo;
     // End of variables declaration//GEN-END:variables
 }

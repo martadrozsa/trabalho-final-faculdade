@@ -15,7 +15,7 @@ import view.util.TelefoneUtil;
 
 public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
 
-    PacienteController controlador;
+    PacienteController pacienteController;
     DefaultListModel modeloLista;
     String[][] matrizPacientes;
     Map<Integer, String> idsCapturados;
@@ -26,7 +26,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
                 
-        controlador = new PacienteController();
+        pacienteController = new PacienteController();
         modeloLista = new DefaultListModel();
         idsCapturados = new HashMap<>();
         
@@ -84,7 +84,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         //map<chave, valor>, chave é o inteiro i, valor é o String capturaId
         //no caso, capturaId é o id que vem em formato String do controlador
         
-        matrizPacientes = controlador.getMinhaMatrizTexto(txtPesquisa.getText());
+        matrizPacientes = pacienteController.getMinhaMatrizTexto(txtPesquisa.getText());
                 
         for(int i = 0; i< matrizPacientes.length; i++) {
             String capturaId = matrizPacientes[i][0];
@@ -415,7 +415,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
                     .addComponent(btnLimpar)
                     .addComponent(btnEditar)
                     .addComponent(btnApagar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(238, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -425,7 +425,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(528, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -538,7 +538,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
 
             if (retornoConfirmacao == 0) {
 
-                if (controlador.apagar(getIdFromMap())) {
+                if (pacienteController.apagar(getIdFromMap())) {
                     JOptionPane.showMessageDialog(null, "Paciente excluído com sucesso", "Apagado!", 1);
                 } else {
                     throw new Mensagem("Falha no metodo do controlador");
@@ -608,7 +608,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
             
             if(retornoConfirmacao == 0){
 
-                if(controlador.editar(id, nome, data, endereco, telefone)) {
+                if(pacienteController.editar(id, nome, data, endereco, telefone)) {
                     
                     JOptionPane.showMessageDialog(null, "Paciente editado com sucesso", "Editado!", 1);
                     

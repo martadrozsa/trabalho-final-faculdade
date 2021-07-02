@@ -214,7 +214,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgendaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgendaConsultaActionPerformed
-        
         novoAgendamento.mostraTelaModoAgendamento();
     }//GEN-LAST:event_btnAgendaConsultaActionPerformed
 
