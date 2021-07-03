@@ -94,6 +94,11 @@
       </Layout>
       <SubComponents>
         <Container class="view.PainelImagemFundo" name="painelImagemFundo1">
+          <Properties>
+            <Property name="img" type="javax.swing.ImageIcon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new ImageIcon(&quot;src/view/imagens/fundo/imagem_fundo2.png&quot;)" type="code"/>
+            </Property>
+          </Properties>
 
           <Layout>
             <DimensionLayout dim="0">

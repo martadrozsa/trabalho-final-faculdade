@@ -1,5 +1,6 @@
 package view.telaMedico.telaCadastroMedico;
 
+import javax.swing.ImageIcon;
 import controller.MedicoController;
 import javax.swing.JOptionPane;
 import view.Mensagem;
@@ -58,6 +59,8 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        painelImagemFundo1.setImg(new ImageIcon("src/view/imagens/fundo/imagem_fundo2.png"));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/logoBonzina.png"))); // NOI18N
 

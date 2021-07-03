@@ -158,5 +158,60 @@ public class AgendamentoDAO {
             return new ArrayList<>();
         }
     }
+    
+    
+    public int contaAgendamentosDoPaciente(int idPaciente) {
+        String queryStatement = "SELECT COUNT(*) as total FROM agendamento WHERE id_paciente=?";
+    
+        try {
+            PreparedStatement preparedStatement = mySQLConn.getConnection().prepareStatement(queryStatement);
+                      
+            preparedStatement.setInt(1, idPaciente);
 
+            // Recupera dados da base
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            int totalAgendamentos = parseTotalAgendamento(resultSet);
+            preparedStatement.close();
+
+            return totalAgendamentos;
+
+        } catch (Exception ex) {
+            System.out.println("Error while querying data: " + ex.toString());
+            return -1;
+        }
+    }
+    
+    // devolver o total de agendamento depois de contar os agendamentos do paciente
+    // devolver o total de agendamento depois de contar os agendamentos do médico
+    private int parseTotalAgendamento(ResultSet resultSet) throws SQLException {
+            int totalAgendamentos = -1;
+            while (resultSet.next()) {
+                totalAgendamentos = resultSet.getInt("total");
+            }
+            return totalAgendamentos;
+    }
+    
+    
+    public int contaAgendamentosDoMedico(int idMedico) {
+        String queryStatement = "SELECT COUNT(*) as total FROM agendamento WHERE id_medico=?";
+    
+        try {
+            PreparedStatement preparedStatement = mySQLConn.getConnection().prepareStatement(queryStatement);
+                      
+            preparedStatement.setInt(1, idMedico);
+
+            // Recupera dados da base
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            int totalAgendamentos = parseTotalAgendamento(resultSet);
+            preparedStatement.close();
+
+            return totalAgendamentos;
+
+        } catch (Exception ex) {
+            System.out.println("Error while querying data: " + ex.toString());
+            return -1;
+        }
+    }
 }

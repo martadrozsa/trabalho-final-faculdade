@@ -582,10 +582,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         indiceLista = -1;
         txtPesquisa.setText("Insira o nome e aperte enter...");
         txtNome.setText("");
-        dtChooser.cleanup();
-        System.out.println(dtChooser.getDate());
-      //  dtChooser = new JDateChooser();
-        dtChooser.add(new JDateChooser());
+        dtChooser.setDate(null);
         txtEndereco.setText("");
         txtTelefone.setText("");   
         
