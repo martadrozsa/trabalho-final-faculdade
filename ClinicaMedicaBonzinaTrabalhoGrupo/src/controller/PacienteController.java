@@ -7,9 +7,11 @@ import model.entity.Paciente;
 
 public class PacienteController {
     private final PacienteBusiness pacienteBusiness;
+    private final AgendamentoController agendamentoController;
 
     public PacienteController() {
         this.pacienteBusiness = new PacienteBusiness();
+        agendamentoController = new AgendamentoController();
     }
 
     public boolean cadastrar(String nome, Date dataNascimento, String endereco, String telefone) {
@@ -23,6 +25,9 @@ public class PacienteController {
     }
 
     public boolean apagar(int id) {
+        if(agendamentoController.contaAgendamentosPaciente(id) != 0) {
+            agendamentoController.deleteAllAgendamentosPaciente(id);
+        }
         return pacienteBusiness.deletePacienteFromBD(id);
     }
 

@@ -10,9 +10,11 @@ import model.entity.enums.Periodo;
 
 public class MedicoController {
      private final MedicoBusiness medicoBusiness;
+     private final AgendamentoController agendamentoController;
 
     public MedicoController() {
         this.medicoBusiness = new MedicoBusiness();
+        this.agendamentoController = new AgendamentoController();        
     }
 
     public boolean cadastrar(int crm, String especialidade, String nomePeriodo, String nomeConsultorio, String nome, String telefone) {
@@ -32,6 +34,9 @@ public class MedicoController {
     }
 
     public boolean apagar(int id) {
+        if(agendamentoController.contaAgendamentosMedico(id) != 0) {
+            agendamentoController.deleteAllAgendamentosMedico(id);
+        }
         return medicoBusiness.deleteMedicoFromBD(id);
     }
 
