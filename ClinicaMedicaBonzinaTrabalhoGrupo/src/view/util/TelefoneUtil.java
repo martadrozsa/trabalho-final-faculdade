@@ -2,7 +2,7 @@ package view.util;
 
 public class TelefoneUtil {
     
-    public static String conversor(String entrada) {
+    public static String converter(String entrada) {
         //esse metodo é só pra tirar oque vem da mascara "()-"
         //substring pega o indice inicial e para um antes da contagem
         //exemplo abcd.substring(1,3) --> resultado bc
@@ -22,6 +22,8 @@ public class TelefoneUtil {
     }
     
     public static String formatar(String entrada) {
+        //esse metodo faz o oposto do anterior, ele insere os sinais no numero
+        //serve pra uma apresentação mais elegante do resultado na tabela
         
         String ddd = entrada.substring(0, 2);
         
