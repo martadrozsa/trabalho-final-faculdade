@@ -3,6 +3,7 @@ package DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.entity.Medico;
@@ -14,7 +15,7 @@ public class MedicoDAO {
     private final MySQLConnection mySQLConn;
     
     public MedicoDAO() {
-        this.mySQLConn = new MySQLConnection();
+        this.mySQLConn = MySQLConnection.getInstance();
     }
     
     public List<Medico> getMinhaListaMedicos(){
@@ -22,7 +23,8 @@ public class MedicoDAO {
             String query = "SELECT * FROM medico ORDER BY periodo ASC, consultorio ASC";
 
             // Recupera dados da base
-            ResultSet resultSet = mySQLConn.getStatement().executeQuery(query);
+            Statement statement = mySQLConn.getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
 
             List<Medico> medicos = parseResultSetToMedico(resultSet);
 

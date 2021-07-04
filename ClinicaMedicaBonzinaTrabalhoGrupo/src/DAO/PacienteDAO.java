@@ -4,6 +4,7 @@ import java.util.List;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import model.entity.Paciente;
@@ -13,7 +14,8 @@ public class PacienteDAO {
      private final MySQLConnection mySQLConn;
       
     public PacienteDAO() {
-        this.mySQLConn = new MySQLConnection();
+        this.mySQLConn = MySQLConnection.getInstance();
+ 
     }
     
     public List<Paciente> getMinhaListaPacientes(){
@@ -21,7 +23,8 @@ public class PacienteDAO {
             String query = "SELECT * FROM paciente";
 
             // Recupera dados da base
-            ResultSet resultSet = mySQLConn.getStatement().executeQuery(query);
+            Statement statement = mySQLConn.getConnection().createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
 
             List<Paciente> pacientes = parseResultSetToPaciente(resultSet);
 

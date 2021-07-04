@@ -16,7 +16,7 @@ public class AgendamentoDAO {
     private final MySQLConnection mySQLConn;
 
     public AgendamentoDAO() {
-        this.mySQLConn = new MySQLConnection();
+        this.mySQLConn = MySQLConnection.getInstance();
     }
     
         public boolean insertAgendamento(Agendamento agendamento) {
@@ -182,6 +182,20 @@ public class AgendamentoDAO {
         }
     }
     
+     public boolean deleteAllAgendamentosPaciente(int idPaciente) {
+        try {
+            String deleteStatement = "DELETE FROM agendamento WHERE id_paciente=?";
+            PreparedStatement preparedStatement = mySQLConn.getConnection().prepareStatement(deleteStatement);
+            preparedStatement.setInt(1, idPaciente);
+            preparedStatement.executeUpdate();
+
+        } catch (Exception ex) {
+            System.out.println("Error while deleting data: " + ex.toString());
+            return false;
+        }
+        return true;
+    }
+    
     // devolver o total de agendamento depois de contar os agendamentos do paciente
     // devolver o total de agendamento depois de contar os agendamentos do médico
     private int parseTotalAgendamento(ResultSet resultSet) throws SQLException {
@@ -213,5 +227,19 @@ public class AgendamentoDAO {
             System.out.println("Error while querying data: " + ex.toString());
             return -1;
         }
+    }
+    
+    public boolean deleteAllAgendamentosMedico(int idMedico) {
+        try {
+            String deleteStatement = "DELETE FROM agendamento WHERE id_medico=?";
+            PreparedStatement preparedStatement = mySQLConn.getConnection().prepareStatement(deleteStatement);
+            preparedStatement.setInt(1, idMedico);
+            preparedStatement.executeUpdate();
+
+        } catch (Exception ex) {
+            System.out.println("Error while deleting data: " + ex.toString());
+            return false;
+        }
+        return true;
     }
 }
