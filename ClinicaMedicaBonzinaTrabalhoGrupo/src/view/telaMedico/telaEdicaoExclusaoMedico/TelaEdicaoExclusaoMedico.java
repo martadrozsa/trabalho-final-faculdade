@@ -10,6 +10,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import view.Mensagem;
+import view.telaMedico.telaCadastroMedico.TelaCadastroMedico;
 import view.util.TelefoneUtil;
 
 public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
@@ -24,6 +25,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
     public TelaEdicaoExclusaoMedico() {
         
         initComponents();
+        setVisible(true);
         this.setLocationRelativeTo(null);
         
         medicoControlador = new MedicoController();
@@ -65,11 +67,8 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
 
     }
 
-    public void preencherMatriz(boolean flag) {
-        //tem uma flag aqui pq como é esperado que o sistema tenha apenas 4
-        //medicos cadastrados, pra exibir a telaTabela ja pega todos do banco
-        
-        if (flag) {
+    public void preencherMatriz(boolean tipoConsulta) {
+        if (tipoConsulta) {
             matrizMedicos = medicoControlador.getMinhaMatrizTexto(txtPesquisa.getText());
         } else {
             matrizMedicos = medicoControlador.getMinhaMatrizTexto();
@@ -465,6 +464,11 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
 
         btnCadastrar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlPesquisaLayout = new javax.swing.GroupLayout(pnlPesquisa);
         pnlPesquisa.setLayout(pnlPesquisaLayout);
@@ -509,21 +513,19 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
             painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelImagemFundo2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelImagemFundo2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         painelImagemFundo2Layout.setVerticalGroup(
             painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelImagemFundo2Layout.createSequentialGroup()
+            .addGroup(painelImagemFundo2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtTitulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTitulo))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -669,7 +671,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
         }
 
         System.out.println(getIdFromMap()); //teste pra ver se o id vem certo, FUNCIONANDO        
-        //controlador.apagar(getIdFromMap()); ----------liberar o metodo 
+        medicoControlador.apagar(getIdFromMap()); 
     }//GEN-LAST:event_btnApagarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -723,7 +725,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
             }
             
             if(txtTelefone.getText().length() == 13) {
-                telefone = TelefoneUtil.conversor(telefone);
+                telefone = TelefoneUtil.converter(telefone);
             } else {
                 throw new Mensagem("Telefone inválido");
             }
@@ -743,7 +745,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Médico editado com sucesso", "Editado!", 1);
 
                 } else {
-                    throw new Mensagem("Falha no metodo do controlador");
+                    throw new Mensagem("Falha na edição!");
                 }
                 
             } else {
@@ -757,6 +759,10 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, erro.getMessage(), "Erro", 0);
         }
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        TelaCadastroMedico telaCadastro = new TelaCadastroMedico();
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

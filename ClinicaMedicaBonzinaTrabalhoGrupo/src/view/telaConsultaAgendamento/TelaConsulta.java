@@ -392,18 +392,12 @@ public class TelaConsulta extends javax.swing.JFrame {
     private javax.swing.JButton btnVisualizar;
     private com.toedter.calendar.JDateChooser calendarDataAgendamento;
     private javax.swing.JTextField inputPesquisaAgenda;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private view.PainelImagemFundo painelImagemFundo1;
-    private view.PainelImagemFundo painelImagemFundo2;
-    private view.PainelImagemFundo painelImagemFundo3;
     private javax.swing.JTable tabelaAgendamentosConsulta;
-    private javax.swing.JLabel txtTitulo;
-    private javax.swing.JLabel txtTitulo1;
     private javax.swing.JLabel txtTituloMedico1;
     private javax.swing.JLabel txtTituloMedico2;
     // End of variables declaration//GEN-END:variables

@@ -12,11 +12,12 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import view.Mensagem;
+import view.telaPaciente.telaCadastroPaciente.TelaCadastroPaciente;
 import view.util.TelefoneUtil;
 
 public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
 
-    PacienteController pacienteController;
+    PacienteController pacienteControlador;
     DefaultListModel modeloLista;
     String[][] matrizPacientes;
     Map<Integer, String> idsCapturados;
@@ -25,9 +26,10 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
     public TelaEdicaoExclusaoPaciente() {
         
         initComponents();
+        setVisible(true);
         this.setLocationRelativeTo(null);
                 
-        pacienteController = new PacienteController();
+        pacienteControlador = new PacienteController();
         modeloLista = new DefaultListModel();
         idsCapturados = new HashMap<>();
         
@@ -47,7 +49,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
     
         modeloLista.clear();
         
-        preencherMatriz();
+        preencherMatriz(true);
         
         ArrayList<String> nomes = new ArrayList<>();
         
@@ -65,6 +67,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
             // isso é um forEach escrito com lambda
             // para cada nome presente no arraylist nomes
             // ele da um addElement na listaModelo passando o nome
+            //foreach é um for que percorre tudo mas não conta as posições
             
         } else {
             //esse metodo não ta se comportando bem aqui...
@@ -78,14 +81,18 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         
     }
     
-    public void preencherMatriz(){
+    public void preencherMatriz(boolean tipoConsulta){
         //chama o metodo do controlador e bota os resultados do banco na matriz
         //percorre a matriz e bota os ids dentro do map com o metodo put
         //put equivale ao add das listas, veja idsCapturados.put(i, captura)
         //map<chave, valor>, chave é o inteiro i, valor é o String capturaId
         //no caso, capturaId é o id que vem em formato String do controlador
+        if(tipoConsulta) {
+            matrizPacientes = pacienteControlador.getMinhaMatrizTexto(txtPesquisa.getText());
+        } else {
+            matrizPacientes = pacienteControlador.getMinhaMatrizTexto();
+        }
         
-        matrizPacientes = pacienteController.getMinhaMatrizTexto(txtPesquisa.getText());
                 
         for(int i = 0; i< matrizPacientes.length; i++) {
             String capturaId = matrizPacientes[i][0];
@@ -107,7 +114,8 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
             id = -1;
             JOptionPane.showMessageDialog(null,
                     "Você deve selecionar um paciente", "Erro de captura do Id", 0);
-        }
+        } //depois que eu deixei os botoes desativados esse trecho virou
+          //um detalhe que demonstra de como o codigo veio sendo refatorado
         return id;
     }
     
@@ -141,7 +149,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
                 btnApagar.setEnabled(true);
                 
             } else {
-                throw new Mensagem("Erro matriz vazia");
+                throw new Mensagem("Erro na busca dos pacientes!");
             }
             
         } catch (Mensagem erro) {
@@ -428,23 +436,28 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
             painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelImagemFundo2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 578, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         painelImagemFundo2Layout.setVerticalGroup(
             painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelImagemFundo2Layout.createSequentialGroup()
+            .addGroup(painelImagemFundo2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTitulo)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGroup(painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtTitulo)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnCadastrar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         btnCadastrar.setText("Cadastrar");
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -474,15 +487,15 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(painelImagemFundo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(painelImagemFundo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(listaPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addComponent(listaPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -535,10 +548,18 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         //metodo alternativo para exibir tela com a tabela de resultados
+        //se a pesquisa estiver vazia ou não for selecionada, ele busca todos
+        //os resultados do banco
         //TelaTabela é um JFrame adicional que está em [OutrosComponentes]
         //exibe a telaTabela, o setLocation...(null) bota essa tela bem no meio
         
-        preencherMatriz();
+        if(txtPesquisa.getText().equals("") || 
+                txtPesquisa.getText().equals("Insira o nome e aperte enter...")) {
+            preencherMatriz(false);
+        } else {
+            preencherMatriz(true);
+        }
+        
         carregaTabela();
         telaTabela.setVisible(true);
         telaTabela.setLocationRelativeTo(null);  
@@ -568,7 +589,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
             else {
                 System.out.println("erro");
             }
-            telefone = TelefoneUtil.conversor(telefone);
+            telefone = TelefoneUtil.converter(telefone);
             preencherCampos(nome, data, endereco, telefone);
             telaTabela.dispose();
         }       
@@ -589,10 +610,8 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
-        //pega o id do map ainda em formato de String, transforma em int e manda
-        //pro controlador apagar o paciente selecionado. usando o indice da lista;
-        //o indice da lista é o valor que o map usou como chave para armazenar os ids
-        //ainda vou adicionar uma confirmação antes de apagar***************
+        //verificao se o usuario tem certeza ao apagar, pega o id do map e manda
+        //pro controlador apagar o paciente selecionado. 
         
         String titulo = "Confirmar exclusão de médico";
         String confirmacao = "Você está prestes a apagar as informações do paciente selecionado";
@@ -604,7 +623,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
 
             if (retornoConfirmacao == 0) {
 
-                if (pacienteController.apagar(getIdFromMap())) {
+                if (pacienteControlador.apagar(getIdFromMap())) {
                     JOptionPane.showMessageDialog(null, "Paciente excluído com sucesso", "Apagado!", 1);
                 } else {
                     throw new Mensagem("Falha no metodo do controlador");
@@ -621,7 +640,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         }
 
         System.out.println(getIdFromMap()); //teste pra ver se o id vem certo, FUNCIONANDO        
-        //controlador.apagar(getIdFromMap()); ----------liberar o metodo 
+        pacienteControlador.apagar(getIdFromMap()); 
     }//GEN-LAST:event_btnApagarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
@@ -659,7 +678,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
             }
             
             if(txtTelefone.getText().length() == 13){
-                telefone = TelefoneUtil.conversor(txtTelefone.getText());
+                telefone = TelefoneUtil.converter(txtTelefone.getText());
             } else {
                 throw new Mensagem("O telefone não foi inserido corretamentem, corrija!");
             }
@@ -674,7 +693,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
             
             if(retornoConfirmacao == 0){
 
-                if(pacienteController.editar(id, nome, data, endereco, telefone)) {
+                if(pacienteControlador.editar(id, nome, data, endereco, telefone)) {
                     
                     JOptionPane.showMessageDialog(null, "Paciente editado com sucesso", "Editado!", 1);
                     
@@ -698,6 +717,10 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
     private void txtPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPesquisaMouseClicked
         txtPesquisa.setText("");
     }//GEN-LAST:event_txtPesquisaMouseClicked
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        TelaCadastroPaciente telaCadastro = new TelaCadastroPaciente();
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
