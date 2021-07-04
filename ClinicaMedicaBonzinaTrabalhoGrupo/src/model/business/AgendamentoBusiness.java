@@ -144,4 +144,18 @@ public class AgendamentoBusiness {
         }
     }
     
+    public int contaAgendamentosPaciente(int idPaciente) {
+        return agendamentoDAO.contaAgendamentosDoPaciente(idPaciente);
+    }
+    public void deleteAllAgendamentosPaciente(int idPaciente) {
+        agendamentoDAO.deleteAllAgendamentosPaciente(idPaciente);
+    }
+    
+    public int contaAgendamentosMedico(int idMedico) {
+        return agendamentoDAO.contaAgendamentosDoMedico(idMedico);
+    }
+    
+    public void deleteAllAgendamentosMedico(int idMedico) {
+        agendamentoDAO.deleteAllAgendamentosMedico(idMedico);
+    }
 }
