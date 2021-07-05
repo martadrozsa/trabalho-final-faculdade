@@ -447,7 +447,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
         });
 
         btnPesquisar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        btnPesquisar.setText("Listar");
+        btnPesquisar.setText("Exibir Todos");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -543,7 +543,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(54, 54, 54)
                             .addComponent(pnlCampos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -614,7 +614,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
 
-        preencherMatriz(true); //mudar pra false depois dos testes
+        preencherMatriz(false);
         carregaTabela();
         telaTabela.setVisible(true);
         telaTabela.setLocationRelativeTo(null);
@@ -651,9 +651,8 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
 
         System.out.println(retornoConfirmacao);
         try {
-
             if (retornoConfirmacao == 0) {
-
+ 
                 if (medicoControlador.apagar(getIdFromMap())) {
                     JOptionPane.showMessageDialog(null, "Médico excluído com sucesso", "Apagado!", 1);
                 } else {
@@ -669,9 +668,6 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
             btnLimpar.doClick();
             JOptionPane.showMessageDialog(null, erro.getMessage(), "Erro", 0);
         }
-
-        System.out.println(getIdFromMap()); //teste pra ver se o id vem certo, FUNCIONANDO        
-        medicoControlador.apagar(getIdFromMap()); 
     }//GEN-LAST:event_btnApagarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed

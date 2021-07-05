@@ -617,8 +617,10 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         String confirmacao = "Você está prestes a apagar as informações do paciente selecionado";
 
         int retornoConfirmacao = JOptionPane.showConfirmDialog(null, confirmacao, titulo, 0, 2);
-
-        System.out.println(retornoConfirmacao);
+        
+        System.out.println(getIdFromMap()); //teste de captura
+        
+        System.out.println(retornoConfirmacao + " captura confirmaçao");
         try {
 
             if (retornoConfirmacao == 0) {
@@ -639,8 +641,6 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, erro.getMessage(), "Erro", 0);
         }
 
-        System.out.println(getIdFromMap()); //teste pra ver se o id vem certo, FUNCIONANDO        
-        pacienteControlador.apagar(getIdFromMap()); 
     }//GEN-LAST:event_btnApagarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed

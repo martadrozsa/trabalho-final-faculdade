@@ -6,7 +6,7 @@ import controller.PacienteController;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import view.Mensagem;
-import view.util.DateUtil;
+import view.util.TelefoneUtil;
 
 public class TelaCadastroPaciente extends javax.swing.JFrame {
     
@@ -82,7 +82,7 @@ public class TelaCadastroPaciente extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         try {
-            inputFone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ####-####")));
+            inputFone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -233,7 +233,7 @@ public class TelaCadastroPaciente extends javax.swing.JFrame {
             if (this.inputFone.getText().length() <= 0) {
                 throw new Mensagem("Telefone deve ser numero e maior que zero.");
             } else {
-//                telefone = DateUtil.conversorTelefone(this.inputFone.getText());
+                telefone = TelefoneUtil.converter(this.inputFone.getText());
             }
 
             // envia os dados para o Controlador cadastrar
