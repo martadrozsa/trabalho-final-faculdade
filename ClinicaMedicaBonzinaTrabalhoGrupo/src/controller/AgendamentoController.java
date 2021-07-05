@@ -98,7 +98,7 @@ public class AgendamentoController {
     }
     
     public void deleteAllAgendamentosPaciente(int idPaciente) {
-        deleteAllAgendamentosPaciente(idPaciente);
+         agendamentoBusinnes.deleteAllAgendamentosPaciente(idPaciente);
     }
 
     public int contaAgendamentosMedico(int idMedico) {
@@ -106,6 +106,6 @@ public class AgendamentoController {
     }
     
     public void deleteAllAgendamentosMedico(int idMedico) {
-        deleteAllAgendamentosMedico(idMedico);
+        agendamentoBusinnes.deleteAllAgendamentosMedico(idMedico);
     }
 }
