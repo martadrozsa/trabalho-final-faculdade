@@ -8,7 +8,9 @@ import model.entity.Paciente;
 import model.entity.enums.Consultorio;
 import model.entity.enums.Periodo;
 
+
 public class MedicoController {
+    
      private final MedicoBusiness medicoBusiness;
      private final AgendamentoController agendamentoController;
 

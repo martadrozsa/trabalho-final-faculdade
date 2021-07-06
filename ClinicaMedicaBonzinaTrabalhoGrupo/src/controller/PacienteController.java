@@ -6,10 +6,12 @@ import javax.swing.JOptionPane;
 import model.business.PacienteBusiness;
 import model.entity.Paciente;
 
+
 public class PacienteController {
+    
     private final PacienteBusiness pacienteBusiness;
     private final AgendamentoController agendamentoController;
-
+    
     public PacienteController() {
         this.pacienteBusiness = new PacienteBusiness();
         agendamentoController = new AgendamentoController();
@@ -30,8 +32,8 @@ public class PacienteController {
         int contagem = agendamentoController.contaAgendamentosPaciente(id);
         if(contagem != 0) {
             String titulo = "Consultas encontradas";
-            String mensagem = "O paciente selecionado possui " + contagem + 
-                    " consultas cadastradas, todas serão deletadas! \n" +
+            String mensagem = "Este paciente possui " + contagem + 
+                    " consultas agendadas, todas serão deletadas! \n" +
                     "Deseja continuar?";
             int confirmacao = JOptionPane.showConfirmDialog(null, mensagem, titulo, 0, 2);
             if(confirmacao == 0) {

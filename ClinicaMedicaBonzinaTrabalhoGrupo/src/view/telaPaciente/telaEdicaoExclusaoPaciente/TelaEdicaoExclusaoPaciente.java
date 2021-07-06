@@ -217,6 +217,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         txtTitulo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
 
         telaTabela.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         telaTabela.setMinimumSize(new java.awt.Dimension(569, 377));
@@ -313,7 +314,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         });
 
         btnPesquisar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        btnPesquisar.setText("Exibir Tabela");
+        btnPesquisar.setText("Listar todos");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -460,6 +461,14 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
             }
         });
 
+        btnCancelar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -468,6 +477,8 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
                 .addGap(0, 42, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnCancelar)
+                        .addGap(97, 97, 97)
                         .addComponent(btnApagar)
                         .addGap(82, 82, 82)
                         .addComponent(btnLimpar)
@@ -494,15 +505,16 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(listaPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(listaPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35))
         );
 
@@ -615,7 +627,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         //pro controlador apagar o paciente selecionado. 
         
         String titulo = "Confirmar exclusão de médico";
-        String confirmacao = "Você está prestes a apagar as informações do paciente selecionado";
+        String confirmacao = "Tem certeza que deseja APAGAR este Paciente?";
 
         int retornoConfirmacao = JOptionPane.showConfirmDialog(null, confirmacao, titulo, 0, 2);
         
@@ -675,18 +687,18 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
             if(txtEndereco.getText().length() > 5) {
                 endereco = txtEndereco.getText();
             } else {
-                throw new Mensagem("O endereço inserido é muito pequeno, corrija!");
+                throw new Mensagem("Por favor, insira um endereço válido!");
             }
             
             if(txtTelefone.getText().length() == 13){
                 telefone = TelefoneUtil.converter(txtTelefone.getText());
             } else {
-                throw new Mensagem("O telefone não foi inserido corretamentem, corrija!");
+                throw new Mensagem("Por favor, insira um telefone válido!");
             }
             
             String titulo = "Confirmar edição de paciente";
-            String confirmacao = "Você está prestes a editar as informações "
-                    + "do paciente selecionado \n Deja Continmuar?";
+            String confirmacao = "Você deseja editar as informações "
+                    + "do paciente selecionado \n Deseja Continuar?";
 
             int retornoConfirmacao = JOptionPane.showConfirmDialog(null, confirmacao, titulo, 0, 2);
 
@@ -699,7 +711,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Paciente editado com sucesso", "Editado!", 1);
                     
                 } else {
-                    throw new Mensagem("Falha no metodo do controlador");
+                    throw new Mensagem("Falha no método do controlador");
                 }
                 
             } else {
@@ -722,6 +734,10 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         TelaCadastroPaciente telaCadastro = new TelaCadastroPaciente();
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        setVisible(false);
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -769,6 +785,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApagar;
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
