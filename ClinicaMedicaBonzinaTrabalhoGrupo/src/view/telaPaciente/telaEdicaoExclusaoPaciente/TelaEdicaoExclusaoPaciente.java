@@ -1,7 +1,7 @@
 package view.telaPaciente.telaEdicaoExclusaoPaciente;
 
+import controller.AgendamentoController;
 import javax.swing.ImageIcon;
-import com.toedter.calendar.JDateChooser;
 import view.util.DateUtil;
 import controller.PacienteController;
 import java.util.ArrayList;
@@ -17,7 +17,8 @@ import view.util.TelefoneUtil;
 
 public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
 
-    PacienteController pacienteControlador;
+    PacienteController pacienteController;
+    AgendamentoController agendamentoController;
     DefaultListModel modeloLista;
     String[][] matrizPacientes;
     Map<Integer, String> idsCapturados;
@@ -29,7 +30,8 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         setVisible(true);
         this.setLocationRelativeTo(null);
                 
-        pacienteControlador = new PacienteController();
+        pacienteController = new PacienteController();
+        agendamentoController = new AgendamentoController();
         modeloLista = new DefaultListModel();
         idsCapturados = new HashMap<>();
         
@@ -88,9 +90,9 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         //map<chave, valor>, chave é o inteiro i, valor é o String capturaId
         //no caso, capturaId é o id que vem em formato String do controlador
         if(tipoConsulta) {
-            matrizPacientes = pacienteControlador.getMinhaMatrizTexto(txtPesquisa.getText());
+            matrizPacientes = pacienteController.getMinhaMatrizTexto(txtPesquisa.getText());
         } else {
-            matrizPacientes = pacienteControlador.getMinhaMatrizTexto();
+            matrizPacientes = pacienteController.getMinhaMatrizTexto();
         }
         
                 
@@ -623,32 +625,49 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
-        //verificao se o usuario tem certeza ao apagar, pega o id do map e manda
-        //pro controlador apagar o paciente selecionado. 
-        
-        String titulo = "Confirmar exclusão de médico";
-        String confirmacao = "Tem certeza que deseja APAGAR este Paciente?";
+        //verifica se o usuario tem certeza ao apagar, pega o id do map e manda
+        //para o controlador apagar o paciente selecionado. 
 
-        int retornoConfirmacao = JOptionPane.showConfirmDialog(null, confirmacao, titulo, 0, 2);
-        
+        String titulo = "Confirmar exclusão de paciente";
+        String confirmaApagar = "Tem certeza que deseja APAGAR este Paciente?";
+
+        int retornoConfirmacao = JOptionPane.showConfirmDialog(null, confirmaApagar, titulo, 0, 2);
+
         System.out.println(getIdFromMap()); //teste de captura
-        
-        System.out.println(retornoConfirmacao + " captura confirmaçao");
+
+        System.out.println(retornoConfirmacao + " captura confirmação");
         try {
 
             if (retornoConfirmacao == 0) {
-
-                if (pacienteControlador.apagar(getIdFromMap())) {
-                    JOptionPane.showMessageDialog(null, "Paciente excluído com sucesso", "Apagado!", 1);
+                boolean retorno = false;
+                int id = getIdFromMap();
+                int contagem = agendamentoController.contaAgendamentosPaciente(id);
+                if (contagem != 0) {
+                    String tituloConsultas = "Consultas encontradas";
+                    String mensagem = "Este paciente possui " + contagem
+                            + " consultas agendadas, todas serão deletadas! \n"
+                            + "Deseja continuar?";
+                    int confirmacao = JOptionPane.showConfirmDialog(null, mensagem, tituloConsultas, 0, 2);
+                    if (confirmacao == 0) {
+                        agendamentoController.deleteAllAgendamentosPaciente(id);
+                        retorno = pacienteController.apagar(id);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Exclusão cancelada!", "Cancelado", 1);
+                        retorno = false;
+                    }
                 } else {
-                    throw new Mensagem("Falha no metodo do controlador");
+                    retorno = pacienteController.apagar(id);
+                }
+
+                if (retorno) {
+                    JOptionPane.showMessageDialog(null, "Paciente excluído com sucesso", "Apagado!", 1);
                 }
             } else {
                 throw new Mensagem("Exclusão cancelada!");
 
             }
             btnLimpar.doClick();
-        
+
         } catch (Mensagem erro) {
             btnLimpar.doClick();
             JOptionPane.showMessageDialog(null, erro.getMessage(), "Erro", 0);
@@ -656,6 +675,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnApagarActionPerformed
 
+    
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
     //esse metodo pega as informações da tela e altera o paciente que foi selecionado
     //é praticamente igual ao do professor, então é sem stress
@@ -706,7 +726,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
             
             if(retornoConfirmacao == 0){
 
-                if(pacienteControlador.editar(id, nome, data, endereco, telefone)) {
+                if(pacienteController.editar(id, nome, data, endereco, telefone)) {
                     
                     JOptionPane.showMessageDialog(null, "Paciente editado com sucesso", "Editado!", 1);
                     

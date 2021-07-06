@@ -147,6 +147,7 @@ public class AgendamentoBusiness {
     public int contaAgendamentosPaciente(int idPaciente) {
         return agendamentoDAO.contaAgendamentosDoPaciente(idPaciente);
     }
+    
     public void deleteAllAgendamentosPaciente(int idPaciente) {
         agendamentoDAO.deleteAllAgendamentosPaciente(idPaciente);
     }

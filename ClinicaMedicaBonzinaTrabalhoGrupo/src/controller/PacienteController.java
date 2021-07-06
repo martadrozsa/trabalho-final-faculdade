@@ -28,25 +28,8 @@ public class PacienteController {
     }
 
     public boolean apagar(int id) {
-        boolean retorno = false;
-        int contagem = agendamentoController.contaAgendamentosPaciente(id);
-        if(contagem != 0) {
-            String titulo = "Consultas encontradas";
-            String mensagem = "Este paciente possui " + contagem + 
-                    " consultas agendadas, todas serão deletadas! \n" +
-                    "Deseja continuar?";
-            int confirmacao = JOptionPane.showConfirmDialog(null, mensagem, titulo, 0, 2);
-            if(confirmacao == 0) {
-                agendamentoController.deleteAllAgendamentosPaciente(id);
-                retorno = pacienteBusiness.deletePacienteFromBD(id);
-            } else {
-                JOptionPane.showMessageDialog(null, "Exclusão cancelada!", "Cancelado", 1);
-                retorno = false;
-            }
-        } else {
-            retorno = pacienteBusiness.deletePacienteFromBD(id);
-        }
-            return retorno;
+        agendamentoController.deleteAllAgendamentosPaciente(id);
+        return pacienteBusiness.deletePacienteFromBD(id);
     }
 
     public List<Paciente> getMinhaLista() {

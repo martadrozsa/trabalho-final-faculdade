@@ -32,7 +32,6 @@ public class PacienteBusiness {
         return pacienteDAO.deletePacienteById(id);
     }
     
-    // método de pesquisa para a TelaPesquisaView e para a TelaBuscarPacienteView
     public List<Paciente> getMinhaListaByNome(String inputNomePesquisa) {
         return pacienteDAO.getMinhaListByNome(inputNomePesquisa);
     }

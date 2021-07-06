@@ -196,8 +196,8 @@ public class AgendamentoDAO {
         return true;
     }
     
-    // devolver o total de agendamento depois de contar os agendamentos do paciente
-    // devolver o total de agendamento depois de contar os agendamentos do médico
+    // devolve o total de agendamento depois de contar os agendamentos do paciente
+    // devolve o total de agendamento depois de contar os agendamentos do médico
     private int parseTotalAgendamento(ResultSet resultSet) throws SQLException {
             int totalAgendamentos = -1;
             while (resultSet.next()) {

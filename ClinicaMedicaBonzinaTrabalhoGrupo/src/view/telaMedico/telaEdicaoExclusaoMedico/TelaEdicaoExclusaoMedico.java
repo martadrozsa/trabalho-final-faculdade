@@ -1,5 +1,6 @@
 package view.telaMedico.telaEdicaoExclusaoMedico;
 
+import controller.AgendamentoController;
 import javax.swing.ImageIcon;
 import controller.MedicoController;
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ import view.util.TelefoneUtil;
 
 public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
 
-    MedicoController medicoControlador;
+    MedicoController medicoController;
+    AgendamentoController agendamentoController;
     DefaultListModel modeloLista;
     String[][] matrizMedicos;
     Map<Integer, String> idsCapturados;
@@ -28,7 +30,8 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
         setVisible(true);
         this.setLocationRelativeTo(null);
         
-        medicoControlador = new MedicoController();
+        medicoController = new MedicoController();
+        agendamentoController = new AgendamentoController();
         modeloLista = new DefaultListModel();
         idsCapturados = new HashMap<>();
 
@@ -69,9 +72,9 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
 
     public void preencherMatriz(boolean tipoConsulta) {
         if (tipoConsulta) {
-            matrizMedicos = medicoControlador.getMinhaMatrizTexto(txtPesquisa.getText());
+            matrizMedicos = medicoController.getMinhaMatrizTexto(txtPesquisa.getText());
         } else {
-            matrizMedicos = medicoControlador.getMinhaMatrizTexto();
+            matrizMedicos = medicoController.getMinhaMatrizTexto();
         }
         for (int i = 0; i < matrizMedicos.length; i++) {
             String capturaId = matrizMedicos[i][0];
@@ -655,18 +658,38 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
 
         String titulo = "Confirmar exclusão de médico";
-        String confirmacao = "Tem certeza que deseja APAGAR este Médico";
+        String confirmaApagar = "Tem certeza que deseja APAGAR este Médico";
 
-        int retornoConfirmacao = JOptionPane.showConfirmDialog(null, confirmacao, titulo, 0, 2);
+        int retornoConfirmacao = JOptionPane.showConfirmDialog(null, confirmaApagar, titulo, 0, 2);
 
         System.out.println(retornoConfirmacao);
         try {
+            
             if (retornoConfirmacao == 0) {
- 
-                if (medicoControlador.apagar(getIdFromMap())) {
-                    JOptionPane.showMessageDialog(null, "Médico excluído com sucesso", "Apagado!", 1);
+                boolean retorno = false;
+                int id = getIdFromMap();
+                int contagem = agendamentoController.contaAgendamentosMedico(id);
+                if (contagem != 0) {
+                    String tituloConsultas = "Consultas encontradas";
+                    String mensagem = "Este médico possui " + contagem
+                            + " consulta(s) agendada(s), todas serão deletadas! \n"
+                            + "Deseja continuar?";
+                    int confirmacao = JOptionPane.showConfirmDialog(null, mensagem, tituloConsultas, 0, 2);
+                    if (confirmacao == 0) {
+                        agendamentoController.deleteAllAgendamentosPaciente(id);
+                        retorno = medicoController.apagar(id);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Exclusão cancelada!");
+                        retorno = false;
+                    }
                 } else {
-                    throw new Mensagem("O médico não foi apagado!");
+                    retorno = medicoController.apagar(id);
+                }
+ 
+                if (retorno) {
+                    JOptionPane.showMessageDialog(null, "Médico excluído com sucesso", "Apagado!", 1);
+//                } else {
+//                    throw new Mensagem("O médico não foi apagado!");
                 }
             } else {
                 throw new Mensagem("Exclusão cancelada!");
@@ -745,7 +768,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
 
             if (retornoConfirmacao == 0) {
 
-                if (medicoControlador.editar(crm, especialidade, periodo, consultorio, id, nome, telefone)) {
+                if (medicoController.editar(crm, especialidade, periodo, consultorio, id, nome, telefone)) {
 
                     JOptionPane.showMessageDialog(null, "Médico editado com sucesso", "Editado!", 1);
 

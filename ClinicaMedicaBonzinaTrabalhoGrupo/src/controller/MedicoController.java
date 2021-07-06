@@ -36,9 +36,7 @@ public class MedicoController {
     }
 
     public boolean apagar(int id) {
-        if(agendamentoController.contaAgendamentosMedico(id) != 0) {
-            agendamentoController.deleteAllAgendamentosMedico(id);
-        }
+        agendamentoController.deleteAllAgendamentosMedico(id);
         return medicoBusiness.deleteMedicoFromBD(id);
     }
 
