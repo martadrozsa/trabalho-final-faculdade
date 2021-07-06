@@ -445,6 +445,11 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
                 txtPesquisaActionPerformed(evt);
             }
         });
+        txtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPesquisaKeyPressed(evt);
+            }
+        });
 
         btnPesquisar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         btnPesquisar.setText("Exibir Todos");
@@ -454,6 +459,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
             }
         });
 
+        listaPesquisa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         listaPesquisa.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         listaPesquisa.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listaPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -656,17 +662,16 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
                 if (medicoControlador.apagar(getIdFromMap())) {
                     JOptionPane.showMessageDialog(null, "Médico excluído com sucesso", "Apagado!", 1);
                 } else {
-                    throw new Mensagem("Falha no metodo do controlador");
+                    throw new Mensagem("O médico não foi apagado!");
                 }
             } else {
                 throw new Mensagem("Exclusão cancelada!");
-
             }
             btnLimpar.doClick();
             
         } catch (Mensagem erro) {
             btnLimpar.doClick();
-            JOptionPane.showMessageDialog(null, erro.getMessage(), "Erro", 0);
+            JOptionPane.showMessageDialog(null, erro.getMessage(), "Aviso", 0);
         }
     }//GEN-LAST:event_btnApagarActionPerformed
 
@@ -759,6 +764,10 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         TelaCadastroMedico telaCadastro = new TelaCadastroMedico();
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void txtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisaKeyPressed
+        listaPesquisa.setVisible(false);
+    }//GEN-LAST:event_txtPesquisaKeyPressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

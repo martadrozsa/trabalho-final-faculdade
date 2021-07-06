@@ -321,6 +321,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         });
 
         listaPesquisa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        listaPesquisa.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listaPesquisa.setVisibleRowCount(5);
         listaPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
