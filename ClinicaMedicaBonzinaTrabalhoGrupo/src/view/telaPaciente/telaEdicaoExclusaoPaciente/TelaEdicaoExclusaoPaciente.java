@@ -377,6 +377,8 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         lblNome.setOpaque(true);
         lblNome.setPreferredSize(new java.awt.Dimension(36, 16));
 
+        dtChooser.setDateFormatString("dd/MM/yyyy");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -502,14 +504,14 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(painelImagemFundo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(listaPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(listaPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -539,9 +541,12 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         //serve pra capturar a tecla enter, preenche a lista usando o a matriz
         //o metodo listarResultado fica encarregado de capturar oque foi pesquisado
         //deixa a lista visivel que mostra os nomes 
-        
-        preencherLista();
-        listaPesquisa.setVisible(true);
+        if(txtPesquisa.getText().equals("")) {
+            JOptionPane.showMessageDialog(null , "Digite algo ou clique em Listar Todos", "Campo vazio", 2);
+        } else {
+           preencherLista();
+           listaPesquisa.setVisible(true); 
+        }
     }//GEN-LAST:event_txtPesquisaActionPerformed
 
     private void listaPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaPesquisaMouseClicked
@@ -620,7 +625,8 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         txtNome.setText("");
         dtChooser.setDate(null);
         txtEndereco.setText("");
-        txtTelefone.setText("");   
+        txtTelefone.setText("");  
+        listaPesquisa.setVisible(false);
         
     }//GEN-LAST:event_btnLimparActionPerformed
 
@@ -756,7 +762,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        setVisible(false);
+        dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     public static void main(String args[]) {
