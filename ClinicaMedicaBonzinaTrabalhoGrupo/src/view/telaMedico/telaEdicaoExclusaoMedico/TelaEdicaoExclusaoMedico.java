@@ -688,8 +688,6 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
  
                 if (retorno) {
                     JOptionPane.showMessageDialog(null, "Médico excluído com sucesso", "Apagado!", 1);
-//                } else {
-//                    throw new Mensagem("O médico não foi apagado!");
                 }
             } else {
                 throw new Mensagem("Exclusão cancelada!");
