@@ -161,6 +161,30 @@ public class PacienteDAO {
             return null;
         }
     }
+    
+    public int getCountPacientes() {
+        String queryStatement = "SELECT COUNT(*) as total FROM paciente";
+        try {
+            PreparedStatement preparedStatement = mySQLConn.getConnection()
+                    .prepareStatement(queryStatement);
+            
+            ResultSet resultSet = preparedStatement.executeQuery();
 
+            int totalAgendamentos = -1;
+            
+            while (resultSet.next()) {
+                totalAgendamentos = resultSet.getInt("total");
+            }
+            
+            
+            preparedStatement.close();
+
+            return totalAgendamentos;
+        
+        } catch (Exception ex) {
+            System.out.println("Error while querying data: " + ex.toString());
+            return -1;
+        }
+    }
 }
     

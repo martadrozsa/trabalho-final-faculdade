@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import model.entity.Agendamento;
@@ -242,4 +243,26 @@ public class AgendamentoDAO {
         }
         return true;
     }
+    
+    public int getCountWeekSchedules() {
+    
+        String queryStatement = "SELECT COUNT(*) as total FROM agendamento";
+        
+            try {
+            PreparedStatement preparedStatement = mySQLConn.getConnection().prepareStatement(queryStatement);
+                      
+            // Recupera dados da base
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            int totalAgendamentos = parseTotalAgendamento(resultSet);
+            preparedStatement.close();
+
+            return totalAgendamentos;
+
+        } catch (Exception ex) {
+            System.out.println("Error while querying data: " + ex.toString());
+            return -1;
+        }
+    }
+       
 }

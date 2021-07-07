@@ -39,5 +39,9 @@ public class PacienteBusiness {
     public Paciente getPacienteById(int id) {
         return pacienteDAO.getPacienteById(id);
     }
+    
+    public int getCountPacientes() {
+        return pacienteDAO.getCountPacientes();
+    }
       
 }

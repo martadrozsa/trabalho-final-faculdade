@@ -70,4 +70,8 @@ public class PacienteController {
         }
         return resulMatrizPacientes;
     }
+    
+    public int getCountPacientes() {
+        return pacienteBusiness.getCountPacientes();
+    }
 }

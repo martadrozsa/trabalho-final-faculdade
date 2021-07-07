@@ -108,4 +108,8 @@ public class AgendamentoController {
     public void deleteAllAgendamentosMedico(int idMedico) {
         agendamentoBusinnes.deleteAllAgendamentosMedico(idMedico);
     }
+    
+    public int getCountWeekSchedules() {
+        return agendamentoBusinnes.getCountWeekSchedules();
+    }
 }
