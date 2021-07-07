@@ -160,7 +160,7 @@ public class AgendamentoBusiness {
         agendamentoDAO.deleteAllAgendamentosMedico(idMedico);
     }
     
-    public int getCountWeekSchedules() {
-        return agendamentoDAO.getCountWeekSchedules();
+    public int getCountTotalSchedules() {
+        return agendamentoDAO.getCountTotalSchedules();
     }
 }

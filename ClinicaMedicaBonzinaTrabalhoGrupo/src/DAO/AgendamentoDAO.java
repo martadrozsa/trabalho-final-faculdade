@@ -244,7 +244,7 @@ public class AgendamentoDAO {
         return true;
     }
     
-    public int getCountWeekSchedules() {
+    public int getCountTotalSchedules() {
     
         String queryStatement = "SELECT COUNT(*) as total FROM agendamento";
         
