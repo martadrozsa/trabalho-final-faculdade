@@ -202,6 +202,9 @@
             <Component class="javax.swing.JTextField" name="inputEndereco">
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="inputDTNascimento">
+              <Properties>
+                <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="inputFone">
               <Properties>

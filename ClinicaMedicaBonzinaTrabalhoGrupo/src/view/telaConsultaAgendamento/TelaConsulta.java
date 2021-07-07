@@ -77,6 +77,7 @@ public class TelaConsulta extends javax.swing.JFrame {
             }
         });
 
+        calendarDataAgendamento.setDateFormatString("dd/MM/yyyy");
         calendarDataAgendamento.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 calendarDataAgendamentoPropertyChange(evt);

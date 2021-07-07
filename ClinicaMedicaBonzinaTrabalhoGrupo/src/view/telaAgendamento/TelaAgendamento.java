@@ -184,6 +184,7 @@ public class TelaAgendamento extends javax.swing.JFrame {
         txtData.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
         txtData.setText("Data da Consulta");
 
+        calendarDataAgendamento.setDateFormatString("dd/MM/yyyy");
         calendarDataAgendamento.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 calendarDataAgendamentoPropertyChange(evt);
