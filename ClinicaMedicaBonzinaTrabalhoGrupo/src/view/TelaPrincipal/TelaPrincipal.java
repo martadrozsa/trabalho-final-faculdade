@@ -17,7 +17,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         PacienteController pacienteControl = new PacienteController();
         lblContagemPacientes.setText(Integer.toString(pacienteControl.getCountPacientes()));
         AgendamentoController agendaControl = new AgendamentoController();
-        lblContagemConsultas.setText(Integer.toString(agendaControl.getCountWeekSchedules()));
+        lblContagemConsultas.setText(Integer.toString(agendaControl.getCountTotalSchedules()));
+        pnlPacientesCount.setOpaque(false);
+        pnlConsultasCount.setOpaque(false);
         setVisible(true);
     }
 
@@ -39,7 +41,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblContagemPacientes = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        pnlPacientesCount1 = new javax.swing.JPanel();
+        pnlConsultasCount = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         lblContagemConsultas = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -147,7 +149,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        pnlPacientesCount.setBorder(new javax.swing.border.MatteBorder(null));
+        pnlPacientesCount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlPacientesCount.setPreferredSize(new java.awt.Dimension(294, 302));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -187,8 +189,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        pnlPacientesCount1.setBorder(new javax.swing.border.MatteBorder(null));
-        pnlPacientesCount1.setPreferredSize(new java.awt.Dimension(294, 302));
+        pnlConsultasCount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlConsultasCount.setPreferredSize(new java.awt.Dimension(294, 302));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -200,24 +202,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/imagens/consultas.png"))); // NOI18N
 
-        javax.swing.GroupLayout pnlPacientesCount1Layout = new javax.swing.GroupLayout(pnlPacientesCount1);
-        pnlPacientesCount1.setLayout(pnlPacientesCount1Layout);
-        pnlPacientesCount1Layout.setHorizontalGroup(
-            pnlPacientesCount1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPacientesCount1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlConsultasCountLayout = new javax.swing.GroupLayout(pnlConsultasCount);
+        pnlConsultasCount.setLayout(pnlConsultasCountLayout);
+        pnlConsultasCountLayout.setHorizontalGroup(
+            pnlConsultasCountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlConsultasCountLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlPacientesCount1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlConsultasCountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblContagemConsultas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(pnlPacientesCount1Layout.createSequentialGroup()
+            .addGroup(pnlConsultasCountLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jLabel5)
                 .addContainerGap(38, Short.MAX_VALUE))
         );
-        pnlPacientesCount1Layout.setVerticalGroup(
-            pnlPacientesCount1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPacientesCount1Layout.createSequentialGroup()
+        pnlConsultasCountLayout.setVerticalGroup(
+            pnlConsultasCountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlConsultasCountLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
@@ -242,7 +244,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addGap(98, 98, 98)
                         .addComponent(pnlPacientesCount, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pnlPacientesCount1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnlConsultasCount, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(82, 82, 82))))
         );
         painelImagemFundoLayout.setVerticalGroup(
@@ -254,7 +256,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(painelImagemFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnlPacientesCount, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlPacientesCount1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlConsultasCount, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(317, Short.MAX_VALUE))
         );
 
@@ -354,8 +356,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblContagemConsultas;
     private javax.swing.JLabel lblContagemPacientes;
     private view.PainelImagemFundo painelImagemFundo;
+    private javax.swing.JPanel pnlConsultasCount;
     private javax.swing.JPanel pnlPacientesCount;
-    private javax.swing.JPanel pnlPacientesCount1;
     private javax.swing.JLabel txtLogo;
     // End of variables declaration//GEN-END:variables
 }
