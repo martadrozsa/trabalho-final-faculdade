@@ -102,7 +102,7 @@ public class MedicoDAO {
             preparedStatement.setString(4, consultorio);
             preparedStatement.setString(5, medico.getNome());
             preparedStatement.setString(6, medico.getTelefone());
-            
+            preparedStatement.setInt(7, medico.getId());
             preparedStatement.executeUpdate();
             preparedStatement.close();
 
