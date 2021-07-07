@@ -23,7 +23,7 @@ public class MedicoController {
         Periodo periodo = Periodo.valueOf(nomePeriodo);
         Consultorio consultorio = Consultorio.valueOf(nomeConsultorio);
         
-        Medico medico = new Medico(crm, telefone, periodo, consultorio, nome, telefone);
+        Medico medico = new Medico(crm, especialidade, periodo, consultorio, nome, telefone);
         return medicoBusiness.insertMedicoIntoBD(medico);
     }
 
