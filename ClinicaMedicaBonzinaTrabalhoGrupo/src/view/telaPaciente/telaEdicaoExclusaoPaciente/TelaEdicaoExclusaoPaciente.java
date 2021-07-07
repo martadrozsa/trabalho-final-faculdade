@@ -629,7 +629,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         //para o controlador apagar o paciente selecionado. 
 
         String titulo = "Confirmar exclusão de paciente";
-        String confirmaApagar = "Tem certeza que deseja APAGAR este Paciente?";
+        String confirmaApagar = "Tem certeza que deseja EXCLUIR este Paciente?";
 
         int retornoConfirmacao = JOptionPane.showConfirmDialog(null, confirmaApagar, titulo, 0, 2);
 
@@ -670,7 +670,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
 
         } catch (Mensagem erro) {
             btnLimpar.doClick();
-            JOptionPane.showMessageDialog(null, erro.getMessage(), "Erro", 0);
+            JOptionPane.showMessageDialog(null, erro.getMessage(), "Aviso", 0);
         }
 
     }//GEN-LAST:event_btnApagarActionPerformed

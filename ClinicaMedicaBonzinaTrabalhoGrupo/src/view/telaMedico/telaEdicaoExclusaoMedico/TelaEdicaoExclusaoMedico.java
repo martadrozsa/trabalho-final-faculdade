@@ -39,7 +39,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
         listaPesquisa.setVisible(false);
 
         btnEditar.setEnabled(false);
-        btnApagar.setEnabled(false);
+        btnExcluir.setEnabled(false);
 
     }
 
@@ -124,7 +124,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
                 preencherCombos(periodo, consultorio);
                 //ativar os botoẽs
                 btnEditar.setEnabled(true);
-                btnApagar.setEnabled(true); 
+                btnExcluir.setEnabled(true); 
             
             } else {
                 throw new Mensagem("Erro matriz vazia");
@@ -146,7 +146,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
 
         preencherCombos(periodo, consultorio);
         btnEditar.setEnabled(true);
-        btnApagar.setEnabled(true);
+        btnExcluir.setEnabled(true);
         
     }
 
@@ -212,7 +212,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
         txtTelefone = new javax.swing.JFormattedTextField();
         pnlEditar = new javax.swing.JPanel();
         btnLimpar = new javax.swing.JButton();
-        btnApagar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         pnlPesquisa = new javax.swing.JPanel();
@@ -389,11 +389,11 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
             }
         });
 
-        btnApagar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        btnApagar.setText("Apagar");
-        btnApagar.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnApagarActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -421,7 +421,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(btnCancelar)
                 .addGap(92, 92, 92)
-                .addComponent(btnApagar)
+                .addComponent(btnExcluir)
                 .addGap(79, 79, 79)
                 .addComponent(btnLimpar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
@@ -433,7 +433,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addGroup(pnlEditarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnApagar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
@@ -642,7 +642,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         btnEditar.setEnabled(false);
-        btnApagar.setEnabled(false);
+        btnExcluir.setEnabled(false);
         indiceLista = -1;
         txtCRM.setText("");
         txtEspecialidade.setText("");
@@ -655,10 +655,10 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnLimparActionPerformed
 
-    private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
 
         String titulo = "Confirmar exclusão de médico";
-        String confirmaApagar = "Tem certeza que deseja APAGAR este Médico";
+        String confirmaApagar = "Tem certeza que deseja EXCLUIR este Médico";
 
         int retornoConfirmacao = JOptionPane.showConfirmDialog(null, confirmaApagar, titulo, 0, 2);
 
@@ -687,7 +687,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
                 }
  
                 if (retorno) {
-                    JOptionPane.showMessageDialog(null, "Médico excluído com sucesso", "Apagado!", 1);
+                    JOptionPane.showMessageDialog(null, "Cadastro excluído com sucesso", "Apagado!", 1);
                 }
             } else {
                 throw new Mensagem("Exclusão cancelada!");
@@ -698,7 +698,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
             btnLimpar.doClick();
             JOptionPane.showMessageDialog(null, erro.getMessage(), "Aviso", 0);
         }
-    }//GEN-LAST:event_btnApagarActionPerformed
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
@@ -839,10 +839,10 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnApagar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JComboBox<String> cmbConsultorio;
