@@ -37,5 +37,19 @@ public class Paciente extends Pessoa{
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    @Override
+    public String toString() {
+        String output = 
+                "Data de Nascimento: " + getDataNascimento()+ 
+                "\nEndereço: " + getEndereco() + 
+                "\n" + 
+                super.toString()
+                ;
+        return output;
+    }
+    
+    
+    
  
 }

@@ -43,6 +43,18 @@ public abstract class Pessoa {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+    @Override
+    public String toString() {
+        String output = 
+                "Id: " + getId() + 
+                "\nNome: " + getNome()+ 
+                "\nTelefone: " + getTelefone()
+                ;
+        return output;
+    }
+    
+    
  
 }
 

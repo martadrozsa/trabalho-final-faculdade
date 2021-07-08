@@ -62,5 +62,18 @@ public class Medico extends Pessoa{
     public void setConsultorio(Consultorio consultorio) {
         this.consultorio = consultorio;
     }
+    
+    @Override
+    public String toString() {
+        String output = 
+                "CRM: " + getCrm()+ 
+                "\nEspecialidade: " + getEspecialidade()+ 
+                "Período: " + getPeriodo()+ 
+                "\nConsultório: " + getConsultorio()+ 
+                "\n" + super.toString()
+                ;
+        return output;
+    }
+    
   
 }
