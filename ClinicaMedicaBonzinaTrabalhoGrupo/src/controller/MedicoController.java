@@ -1,28 +1,25 @@
 package controller;
 
-import java.util.Date;
 import java.util.List;
 import model.business.MedicoBusiness;
 import model.entity.Medico;
-import model.entity.Paciente;
 import model.entity.enums.Consultorio;
 import model.entity.enums.Periodo;
 
-
 public class MedicoController {
-    
-     private final MedicoBusiness medicoBusiness;
-     private final AgendamentoController agendamentoController;
+
+    private final MedicoBusiness medicoBusiness;
+    private final AgendamentoController agendamentoController;
 
     public MedicoController() {
         this.medicoBusiness = new MedicoBusiness();
-        this.agendamentoController = new AgendamentoController();        
+        this.agendamentoController = new AgendamentoController();
     }
 
     public boolean cadastrar(int crm, String especialidade, String nomePeriodo, String nomeConsultorio, String nome, String telefone) {
         Periodo periodo = Periodo.valueOf(nomePeriodo);
         Consultorio consultorio = Consultorio.valueOf(nomeConsultorio);
-        
+
         Medico medico = new Medico(crm, especialidade, periodo, consultorio, nome, telefone);
         return medicoBusiness.insertMedicoIntoBD(medico);
     }
@@ -30,7 +27,7 @@ public class MedicoController {
     public boolean editar(int crm, String especialidade, String nomePeriodo, String nomeConsultorio, int id, String nome, String telefone) {
         Periodo periodo = Periodo.valueOf(nomePeriodo);
         Consultorio consultorio = Consultorio.valueOf(nomeConsultorio);
-        
+
         Medico medico = new Medico(crm, telefone, periodo, consultorio, nome, telefone);
         return medicoBusiness.updateMedicoInBD(medico);
     }
@@ -43,14 +40,14 @@ public class MedicoController {
     public List<Medico> getMinhaLista() {
         return medicoBusiness.getMinhaLista();
     }
-    
+
     @SuppressWarnings("unchecked")
     public String[][] getMinhaMatrizTexto() {
-        
+
         List<Medico> minhaLista = medicoBusiness.getMinhaLista();
-        
+
         String[][] matrizMedicos = new String[minhaLista.size()][7];
-        
+
         for (int i = 0; i < minhaLista.size(); i++) {
             matrizMedicos[i][0] = minhaLista.get(i).getId() + "";
             matrizMedicos[i][1] = minhaLista.get(i).getNome();
@@ -58,17 +55,18 @@ public class MedicoController {
             matrizMedicos[i][3] = minhaLista.get(i).getCrm() + "";
             matrizMedicos[i][4] = minhaLista.get(i).getEspecialidade();
             matrizMedicos[i][5] = minhaLista.get(i).getPeriodo().toString();
-            matrizMedicos[i][6] = minhaLista.get(i).getConsultorio().toString();   
+            matrizMedicos[i][6] = minhaLista.get(i).getConsultorio().toString();
         }
+        
         return matrizMedicos;
-    }      
-    
+    }
+
     public String[][] getMinhaMatrizTexto(String busca) {
-        
+
         List<Medico> minhaLista = medicoBusiness.getMinhaListaByNome(busca);
-        
+
         String[][] matrizMedicos = new String[minhaLista.size()][7];
-        
+
         for (int i = 0; i < minhaLista.size(); i++) {
             matrizMedicos[i][0] = minhaLista.get(i).getId() + "";
             matrizMedicos[i][1] = minhaLista.get(i).getNome();
@@ -76,8 +74,9 @@ public class MedicoController {
             matrizMedicos[i][3] = minhaLista.get(i).getCrm() + "";
             matrizMedicos[i][4] = minhaLista.get(i).getEspecialidade();
             matrizMedicos[i][5] = minhaLista.get(i).getPeriodo().toString();
-            matrizMedicos[i][6] = minhaLista.get(i).getConsultorio().toString();   
+            matrizMedicos[i][6] = minhaLista.get(i).getConsultorio().toString();
         }
+        
         return matrizMedicos;
-    }      
+    }
 }

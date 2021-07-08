@@ -13,12 +13,12 @@ import model.entity.enums.Periodo;
 public class MedicoDAO {
 
     private final MySQLConnection mySQLConn;
-    
+
     public MedicoDAO() {
         this.mySQLConn = MySQLConnection.getInstance();
     }
-    
-    public List<Medico> getMinhaListaMedicos(){
+
+    public List<Medico> getMinhaListaMedicos() {
         try {
             String query = "SELECT * FROM medico ORDER BY periodo ASC, consultorio ASC";
 
@@ -30,16 +30,17 @@ public class MedicoDAO {
 
             // Todos os pacientes na lista "pacientes"
             return medicos;
-            
+
         } catch (Exception ex) {
             System.out.println("Error while querying data: " + ex.toString());
+            
             return new ArrayList<>();
         }
     }
 
-        // transforma as rows do database -> objetos em lista local
-        // transforma os dados da tabela na base em dados (objetos) em uma lista
-        // cada iteração no while está parseando uma linha do tabela 
+    // transforma as rows do database -> objetos em lista local
+    // transforma os dados da tabela na base em dados (objetos) em uma lista
+    // cada iteração no while está parseando uma linha do tabela 
     public List<Medico> parseResultSetToMedico(ResultSet resultSet) throws SQLException {
         List<Medico> medicos = new ArrayList<>();
 
@@ -51,28 +52,28 @@ public class MedicoDAO {
             int id = resultSet.getInt("id");
             String nome = resultSet.getString("nome");
             String telefone = resultSet.getString("telefone");
-            
+
             //converse tipo String em ENUM
             Periodo periodo = Periodo.valueOf(nomePeriodo);
             Consultorio consultorio = Consultorio.valueOf(nomeConsultorio);
-            
+
             Medico medico = new Medico(crm, especialidade, periodo, consultorio, id, nome, telefone);
             medicos.add(medico);
-            
+
         }
         return medicos;
     }
-    
+
     public boolean insertMedico(Medico medico) {
         try {
             String insertStatement = "INSERT INTO medico(crm, especialidade, periodo, consultorio, nome, telefone) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = mySQLConn.getConnection().prepareStatement(insertStatement);
-     
+
             //converse tipo
             String periodo = medico.getPeriodo().toString();
             String consultorio = medico.getConsultorio().toString();
-                   
-            preparedStatement.setInt(1,medico.getCrm());
+
+            preparedStatement.setInt(1, medico.getCrm());
             preparedStatement.setString(2, medico.getEspecialidade());
             preparedStatement.setString(3, periodo);
             preparedStatement.setString(4, consultorio);
@@ -81,22 +82,25 @@ public class MedicoDAO {
 
             preparedStatement.executeUpdate();
             preparedStatement.close();
+       
         } catch (Exception ex) {
             System.out.println("Error while inserting data: " + ex.toString());
+           
             return false;
         }
+        
         return true;
     }
-    
+
     public boolean updateMedico(Medico medico) {
         String updateStatement = "UPDATE medico SET crm=?, especialidade=?, periodo=?, consultorio=?, nome=?, telefone=? WHERE id=?";
         try {
             PreparedStatement preparedStatement = mySQLConn.getConnection().prepareStatement(updateStatement);
-            
+
             String periodo = medico.getPeriodo().toString();
             String consultorio = medico.getConsultorio().toString();
-                   
-            preparedStatement.setInt(1,medico.getCrm());
+
+            preparedStatement.setInt(1, medico.getCrm());
             preparedStatement.setString(2, medico.getEspecialidade());
             preparedStatement.setString(3, periodo);
             preparedStatement.setString(4, consultorio);
@@ -108,32 +112,36 @@ public class MedicoDAO {
 
         } catch (Exception ex) {
             System.out.println("Error while updating data: " + ex.toString());
+            
             return false;
         }
+        
         return true;
     }
-      
+
     public boolean deleteMedicoById(int id) {
         try {
             String deleteStatement = "DELETE FROM medico WHERE id=?";
             PreparedStatement preparedStatement = mySQLConn.getConnection().prepareStatement(deleteStatement);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
-            
+
             preparedStatement.close();
 
         } catch (Exception ex) {
             System.out.println("Error while deleting data: " + ex.toString());
+            
             return false;
         }
+        
         return true;
     }
-    
+
     public List<Medico> getMinhaListByNome(String nome) {
-            // database, me entrega todos as linhas na tabela medico que tem o nome parecido com "nome".
-            String termoBusca = "%" + nome + "%";
-            String queryStatement = "SELECT * FROM medico WHERE nome LIKE ?";
-            
+        // database, me entrega todos as linhas na tabela medico que tem o nome parecido com "nome".
+        String termoBusca = "%" + nome + "%";
+        String queryStatement = "SELECT * FROM medico WHERE nome LIKE ?";
+
         try {
             PreparedStatement preparedStatement = mySQLConn.getConnection().prepareStatement(queryStatement);
             preparedStatement.setString(1, termoBusca);
@@ -142,13 +150,15 @@ public class MedicoDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             List<Medico> medicos = parseResultSetToMedico(resultSet);
             preparedStatement.close();
+            
             // Todos os pacientes na lista "pacientes"
             return medicos;
-            
+
         } catch (Exception ex) {
             System.out.println("Error while querying data: " + ex.toString());
+            
             return new ArrayList<>();
         }
     }
- 
+
 }

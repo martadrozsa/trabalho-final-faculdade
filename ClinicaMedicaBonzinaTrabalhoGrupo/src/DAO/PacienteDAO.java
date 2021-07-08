@@ -10,15 +10,15 @@ import java.util.Date;
 import model.entity.Paciente;
 
 public class PacienteDAO {
-    
-     private final MySQLConnection mySQLConn;
-      
+
+    private final MySQLConnection mySQLConn;
+
     public PacienteDAO() {
         this.mySQLConn = MySQLConnection.getInstance();
- 
+
     }
-    
-    public List<Paciente> getMinhaListaPacientes(){
+
+    public List<Paciente> getMinhaListaPacientes() {
         try {
             String query = "SELECT * FROM paciente";
 
@@ -30,9 +30,10 @@ public class PacienteDAO {
 
             // Todos os pacientes na lista "pacientes"
             return pacientes;
-            
+
         } catch (Exception ex) {
             System.out.println("Error while querying data: " + ex.toString());
+
             return new ArrayList<>();
         }
     }
@@ -70,10 +71,13 @@ public class PacienteDAO {
 
             preparedStatement.executeUpdate();
             preparedStatement.close();
+        
         } catch (Exception ex) {
             System.out.println("Error while inserting data: " + ex.toString());
+            
             return false;
         }
+        
         return true;
     }
 
@@ -96,8 +100,10 @@ public class PacienteDAO {
 
         } catch (Exception ex) {
             System.out.println("Error while updating data: " + ex.toString());
+            
             return false;
         }
+        
         return true;
     }
 
@@ -113,8 +119,10 @@ public class PacienteDAO {
 
         } catch (Exception ex) {
             System.out.println("Error while deleting data: " + ex.toString());
+            
             return false;
         }
+        
         return true;
     }
 
@@ -136,6 +144,7 @@ public class PacienteDAO {
 
         } catch (Exception ex) {
             System.out.println("Error while querying data: " + ex.toString());
+            
             return new ArrayList<>();
         }
     }
@@ -158,33 +167,33 @@ public class PacienteDAO {
 
         } catch (Exception ex) {
             System.out.println("Error while querying data: " + ex.toString());
+            
             return null;
         }
     }
-    
+
     public int getCountPacientes() {
         String queryStatement = "SELECT COUNT(*) as total FROM paciente";
         try {
             PreparedStatement preparedStatement = mySQLConn.getConnection()
                     .prepareStatement(queryStatement);
-            
+
             ResultSet resultSet = preparedStatement.executeQuery();
 
             int totalAgendamentos = -1;
-            
+
             while (resultSet.next()) {
                 totalAgendamentos = resultSet.getInt("total");
             }
-            
-            
+
             preparedStatement.close();
 
             return totalAgendamentos;
-        
+
         } catch (Exception ex) {
             System.out.println("Error while querying data: " + ex.toString());
+            
             return -1;
         }
     }
 }
-    

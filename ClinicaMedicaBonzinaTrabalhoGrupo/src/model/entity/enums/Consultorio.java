@@ -5,7 +5,7 @@ public enum Consultorio {
     CONSULTORIO_2("Consultório 2")
     ;
     
-    private String nomeFormatado;
+    private final String nomeFormatado;
     
     Consultorio(String nomeFormatado) {
         this.nomeFormatado = nomeFormatado;

@@ -1,18 +1,16 @@
 package model.entity;
 
-import java.util.Date;
 import model.entity.enums.Consultorio;
 import model.entity.enums.Periodo;
 
+public class Medico extends Pessoa {
 
-public class Medico extends Pessoa{
-    
     private int crm;
     private String especialidade;
     private Periodo periodo;
     private Consultorio consultorio;
-    
-    public Medico(){
+
+    public Medico() {
     }
 
     public Medico(int crm, String especialidade, Periodo periodo, Consultorio consultorio, int id, String nome, String telefone) {
@@ -62,18 +60,16 @@ public class Medico extends Pessoa{
     public void setConsultorio(Consultorio consultorio) {
         this.consultorio = consultorio;
     }
-    
+
     @Override
     public String toString() {
-        String output = 
-                "CRM: " + getCrm()+ 
-                "\nEspecialidade: " + getEspecialidade()+ 
-                "Período: " + getPeriodo()+ 
-                "\nConsultório: " + getConsultorio()+ 
-                "\n" + super.toString()
-                ;
+        String output
+                = "CRM: " + getCrm()
+                + "\nEspecialidade: " + getEspecialidade()
+                + "Período: " + getPeriodo()
+                + "\nConsultório: " + getConsultorio()
+                + "\n" + super.toString();
         return output;
     }
-    
-  
+
 }

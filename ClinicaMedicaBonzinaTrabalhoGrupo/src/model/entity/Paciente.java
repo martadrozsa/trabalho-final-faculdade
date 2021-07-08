@@ -2,11 +2,11 @@ package model.entity;
 
 import java.util.Date;
 
-public class Paciente extends Pessoa{
-    
+public class Paciente extends Pessoa {
+
     private Date dataNascimento;
     private String endereco;
-    
+
     public Paciente() {
     }
 
@@ -21,7 +21,7 @@ public class Paciente extends Pessoa{
         this.dataNascimento = dataNascimento;
         this.endereco = endereco;
     }
-   
+
     public Date getDataNascimento() {
         return dataNascimento;
     }
@@ -40,16 +40,12 @@ public class Paciente extends Pessoa{
 
     @Override
     public String toString() {
-        String output = 
-                "Data de Nascimento: " + getDataNascimento()+ 
-                "\nEndereço: " + getEndereco() + 
-                "\n" + 
-                super.toString()
-                ;
+        String output
+                = "Data de Nascimento: " + getDataNascimento()
+                + "\nEndereço: " + getEndereco()
+                + "\n"
+                + super.toString();
         return output;
     }
-    
-    
-    
- 
+
 }

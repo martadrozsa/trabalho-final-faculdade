@@ -77,6 +77,7 @@ public class AgendamentoController {
             matrizAgendamentos[i][DATA_NASCIMENTO.ordinal()] = agendamento.getPaciente().getDataNascimento() + "";
             matrizAgendamentos[i][DATA_AGENDAMENTO.ordinal()] = agendamento.getDataAgendamento() + "";
         }
+        
         return matrizAgendamentos;
     }
 
@@ -96,19 +97,19 @@ public class AgendamentoController {
     public int contaAgendamentosPaciente(int idPaciente) {
         return agendamentoBusinnes.contaAgendamentosPaciente(idPaciente);
     }
-    
+
     public void deleteAllAgendamentosPaciente(int idPaciente) {
-         agendamentoBusinnes.deleteAllAgendamentosPaciente(idPaciente);
+        agendamentoBusinnes.deleteAllAgendamentosPaciente(idPaciente);
     }
 
     public int contaAgendamentosMedico(int idMedico) {
         return agendamentoBusinnes.contaAgendamentosMedico(idMedico);
     }
-    
+
     public void deleteAllAgendamentosMedico(int idMedico) {
         agendamentoBusinnes.deleteAllAgendamentosMedico(idMedico);
     }
-    
+
     public int getCountTotalSchedules() {
         return agendamentoBusinnes.getCountTotalSchedules();
     }

@@ -1,25 +1,25 @@
 package model.entity;
 
 public abstract class Pessoa {
-    
+
     private int id;
     private String nome;
     private String telefone;
-    
+
     public Pessoa() {
     }
-    
-    public Pessoa(int id, String nome, String telefone){
+
+    public Pessoa(int id, String nome, String telefone) {
         this.id = id;
         this.nome = nome;
         this.telefone = telefone;
     }
-    
+
     public Pessoa(String nome, String telefone) {
         this.nome = nome;
         this.telefone = telefone;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -46,15 +46,11 @@ public abstract class Pessoa {
 
     @Override
     public String toString() {
-        String output = 
-                "Id: " + getId() + 
-                "\nNome: " + getNome()+ 
-                "\nTelefone: " + getTelefone()
-                ;
+        String output
+                = "Id: " + getId()
+                + "\nNome: " + getNome()
+                + "\nTelefone: " + getTelefone();
         return output;
     }
-    
-    
- 
-}
 
+}

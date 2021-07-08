@@ -4,27 +4,27 @@ import DAO.MedicoDAO;
 import java.util.List;
 import model.entity.Medico;
 
-
 public class MedicoBusiness {
-    private MedicoDAO medicoDAO;
+
+    private final MedicoDAO medicoDAO;
 
     public MedicoBusiness() {
         this.medicoDAO = new MedicoDAO();
     }
-    
-     public List<Medico> getMinhaLista() {
+
+    public List<Medico> getMinhaLista() {
         return medicoDAO.getMinhaListaMedicos();
     }
-    
-     public List<Medico> getMinhaListaByNome(String nome) {
+
+    public List<Medico> getMinhaListaByNome(String nome) {
         return medicoDAO.getMinhaListByNome(nome);
-     }
-     
+    }
+
     public boolean insertMedicoIntoBD(Medico medico) {
         boolean isSuccess = medicoDAO.insertMedico(medico);
         return isSuccess;
     }
-      
+
     public boolean updateMedicoInBD(Medico medico) {
         return medicoDAO.updateMedico(medico);
     }
@@ -32,9 +32,9 @@ public class MedicoBusiness {
     public boolean deleteMedicoFromBD(int id) {
         return medicoDAO.deleteMedicoById(id);
     }
-    
+
     // retorna todos os médicos
-    public List<Medico> getMedicos(){
+    public List<Medico> getMedicos() {
         return medicoDAO.getMinhaListaMedicos();
     }
 }

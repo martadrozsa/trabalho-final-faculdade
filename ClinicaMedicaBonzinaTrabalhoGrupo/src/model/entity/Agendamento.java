@@ -4,19 +4,24 @@ import java.sql.Time;
 import java.util.Date;
 import model.entity.enums.Consultorio;
 
-
 public class Agendamento {
-    
+
     private int idAgendamento;
     private Date dataAgendamento;
     private Time horarioAgendamento;
     private Medico medico;
     private Paciente paciente;
-    
+
     public Agendamento() {
     }
 
-    public Agendamento(Time horarioAgendamento, String nomeMedico, String especialidade, Consultorio consultorio, String nomePaciente, int idMedico) {
+    public Agendamento(
+            Time horarioAgendamento,
+            String nomeMedico,
+            String especialidade,
+            Consultorio consultorio,
+            String nomePaciente,
+            int idMedico) {
         medico = new Medico();
         paciente = new Paciente();
 
@@ -24,7 +29,7 @@ public class Agendamento {
         medico.setNome(nomeMedico);
         medico.setEspecialidade(especialidade);
         medico.setConsultorio(consultorio);
-        paciente.setNome(nomePaciente); 
+        paciente.setNome(nomePaciente);
         medico.setId(idMedico);
     }
 
@@ -41,8 +46,8 @@ public class Agendamento {
     ) {
         medico = new Medico();
         paciente = new Paciente();
-        
-        paciente.setNome(nomePaciente); 
+
+        paciente.setNome(nomePaciente);
         paciente.setDataNascimento(dataNascimento);
         this.horarioAgendamento = horarioAgendamento;
         this.dataAgendamento = dataAgendamento;
@@ -77,7 +82,7 @@ public class Agendamento {
     public void setDataAgendamento(Date dataAgendamento) {
         this.dataAgendamento = dataAgendamento;
     }
-  
+
     public Time getHorarioAgendamento() {
         return horarioAgendamento;
     }
@@ -85,16 +90,16 @@ public class Agendamento {
     public void setHorarioAgendamento(Time horarioAgendamento) {
         this.horarioAgendamento = horarioAgendamento;
     }
-    
+
     public Medico getMedico() {
         return medico;
     }
-    
-    public Paciente getPaciente () {
+
+    public Paciente getPaciente() {
         return paciente;
     }
 
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
-    }   
+    }
 }

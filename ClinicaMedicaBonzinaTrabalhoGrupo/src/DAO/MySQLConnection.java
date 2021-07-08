@@ -37,9 +37,9 @@ public class MySQLConnection {
         } catch (SQLException e) {
             System.out.println("Nao foi possivel conectar...");
         }
-        
+
     }
-    
+
     public static MySQLConnection getInstance() {
         if (uniqueInstance == null) {
             uniqueInstance = new MySQLConnection();
@@ -51,5 +51,5 @@ public class MySQLConnection {
     public Connection getConnection() {
         return connection;
     }
-    
+
 }
