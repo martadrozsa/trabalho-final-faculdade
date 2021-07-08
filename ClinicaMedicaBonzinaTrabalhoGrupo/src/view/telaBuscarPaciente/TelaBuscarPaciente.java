@@ -106,6 +106,11 @@ public class TelaBuscarPaciente extends javax.swing.JFrame {
             }
         });
         tabelaPacientes.getTableHeader().setReorderingAllowed(false);
+        tabelaPacientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaPacientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaPacientes);
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
@@ -269,6 +274,12 @@ public class TelaBuscarPaciente extends javax.swing.JFrame {
     private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
         setVisible(false);
     }//GEN-LAST:event_btnFecharActionPerformed
+
+    private void tabelaPacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaPacientesMouseClicked
+        if(evt.getClickCount() == 2) {
+            btnSelecionar.doClick();
+        }
+    }//GEN-LAST:event_tabelaPacientesMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
