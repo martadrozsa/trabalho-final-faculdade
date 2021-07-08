@@ -12,6 +12,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import view.Mensagem;
+import view.MensagemAlternativa;
 import view.telaPaciente.telaCadastroPaciente.TelaCadastroPaciente;
 import view.util.TelefoneUtil;
 
@@ -741,7 +742,7 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
                 }
                 
             } else {
-                throw new Mensagem("Edição cancelada!");
+                throw new MensagemAlternativa("Edição cancelada!");
             }
             
             btnLimpar.doClick();//limpando os campos por simulacão de clique
@@ -749,6 +750,9 @@ public class TelaEdicaoExclusaoPaciente extends javax.swing.JFrame {
         } catch(Mensagem erro){
             btnLimpar.doClick();
             JOptionPane.showMessageDialog(null, erro.getMessage(), "Erro", 0);
+        } catch(MensagemAlternativa mensagem) {
+            btnLimpar.doClick();
+            JOptionPane.showMessageDialog(null, mensagem.getMessage(), "Cancelado", 1);
         }
         
     }//GEN-LAST:event_btnEditarActionPerformed
