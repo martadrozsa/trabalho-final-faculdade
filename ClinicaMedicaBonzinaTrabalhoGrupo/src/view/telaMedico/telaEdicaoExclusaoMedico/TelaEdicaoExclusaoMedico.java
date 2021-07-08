@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import view.Mensagem;
 import view.MensagemAlternativa;
 import view.telaMedico.telaCadastroMedico.TelaCadastroMedico;
+import view.util.ConsultorioUtil;
 import view.util.TelefoneUtil;
 
 public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
@@ -162,9 +163,9 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
             System.out.println("Erro na captura do periodo pro CMB");
         }
 
-        if (consultorio.equals("CONSULTORIO_1")) {
+        if (consultorio.equals("CONSULTORIO_1") || consultorio.equals("Consultório 1")) {
             cmbConsultorio.setSelectedIndex(0);
-        } else if (consultorio.equals("CONSULTORIO_2")) {
+        } else if (consultorio.equals("CONSULTORIO_2") || consultorio.equals("Consultório 2")) {
             cmbConsultorio.setSelectedIndex(1);
         } else {
             cmbConsultorio.setSelectedIndex(-1);
@@ -185,7 +186,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
                 matrizMedicos[i][3],
                 matrizMedicos[i][4],
                 matrizMedicos[i][5],
-                matrizMedicos[i][6],
+                ConsultorioUtil.converter(matrizMedicos[i][6]),                            //__________________________________________________
                 TelefoneUtil.formatar(matrizMedicos[i][2]),});
         }
     }
