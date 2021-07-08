@@ -277,7 +277,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
             
             telefone = TelefoneUtil.converter(telefone);
             
-            if(testar(telefone)){
+            if(!testar(telefone)){
                 throw new Mensagem("Telefone inserido não é valido.");
             }             
             

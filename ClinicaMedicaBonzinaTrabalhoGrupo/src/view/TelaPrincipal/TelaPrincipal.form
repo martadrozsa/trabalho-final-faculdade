@@ -42,10 +42,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="painelImagemFundo" max="32767" attributes="0"/>
-          </Group>
+          <Component id="painelImagemFundo" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -73,13 +70,13 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="txtLogo" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="774" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                           <Component id="pnlPacientesCount" min="-2" pref="334" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="82" max="32767" attributes="0"/>
                           <Component id="pnlConsultasCount" min="-2" pref="334" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                       </Group>
