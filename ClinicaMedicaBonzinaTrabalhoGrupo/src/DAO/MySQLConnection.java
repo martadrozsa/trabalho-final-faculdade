@@ -20,7 +20,7 @@ public class MySQLConnection {
             final String database = "clinica_medica";
             final String url = "jdbc:mysql://" + server + ":3306/" + database + "?serverTimezone=UTC&useTimezone=true";
             final String user = "root";
-            final String password = "pass";
+            final String password = "1234567";
 
             // Conectando..
             connection = DriverManager.getConnection(url, user, password);

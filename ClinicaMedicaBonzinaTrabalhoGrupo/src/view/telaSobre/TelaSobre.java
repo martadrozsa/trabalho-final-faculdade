@@ -37,7 +37,7 @@ public class TelaSobre extends javax.swing.JFrame {
         jTextArea2.setColumns(20);
         jTextArea2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jTextArea2.setRows(5);
-        jTextArea2.setText("Sistema desenvolvido por:\n \nArthur Almeida \nAntônio Gabriel Sgarbi Kadzerski \nMarta Denisczwicz Rozsa\nMatheus Caetano Furtado \nNatan Buttner Teodoro ");
+        jTextArea2.setText("Este projeto foi desenvolvido utilizando:\n\n--- Java 11 (Swing + JDBC)\n--- MySQL\n\n---------------------------------------------------\n\nContou com a colaboração de:\n\n--Arthur Almeida \n--Antônio Gabriel Sgarbi Kadzerski \n--Marta Denisczwicz Rozsa\n--Matheus Caetano Furtado \n--Natan Buttner Teodoro\n");
         jScrollPane2.setViewportView(jTextArea2);
 
         painelImagemFundo1.setImg(new ImageIcon("src/view/imagens/fundo/imagem_fundo2.png"));

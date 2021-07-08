@@ -232,11 +232,11 @@ public class TelaCadastroPaciente extends javax.swing.JFrame {
                 endereco = this.inputEndereco.getText();
             }
 
-            if (this.inputFone.getText().length() <= 0) {
-                throw new Mensagem("Telefone deve ser numero e maior que zero.");
-            } else {
-                telefone = TelefoneUtil.converter(this.inputFone.getText());
-            }
+            telefone = TelefoneUtil.converter(telefone);
+            
+            if(testar(telefone)){
+                throw new Mensagem("Telefone inserido não é valido.");
+            }  
 
             // envia os dados para o Controlador cadastrar
             if (this.pacienteController.cadastrar(nome, data_nascimento, endereco, telefone)) {
@@ -246,7 +246,7 @@ public class TelaCadastroPaciente extends javax.swing.JFrame {
                 this.inputNome.setText("");
                 this.inputDTNascimento.setDate(null);
                 this.inputEndereco.setText("");
-                this.inputFone.setText("");
+                this.inputFone.setText(null);
 
             }
 
@@ -257,6 +257,16 @@ public class TelaCadastroPaciente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    public boolean testar(String numero) {
+        boolean teste = true;
+        try {
+            int inteiro = Integer.parseInt(numero);
+            teste = false;
+        } catch(NumberFormatException e) {
+            System.out.println(e.getMessage());
+        }
+        return teste;
+    }
     /**
      * @param args the command line arguments
      */

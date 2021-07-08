@@ -22,9 +22,7 @@ public class TelefoneUtil {
         } catch(Exception e) {
             System.out.println(e.getMessage());
         }
-        System.out.println(ddd);
-        System.out.println(inicio);
-        System.out.println(termino);
+
         String saida = ddd + inicio + termino; 
                         
         return saida;
@@ -55,5 +53,5 @@ public class TelefoneUtil {
         return saida;
         
     }
-        
+            
 }

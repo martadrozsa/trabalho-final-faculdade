@@ -248,12 +248,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
 
          try {
             // recebendo e validando dados da interface gráfica
-            
-            //ComboBox
-            String periodoComboBox = (String) this.comboBoxPeriodo.getSelectedItem();
-            String consultorioComboBox = (String) this.comboBoxConsultorio.getSelectedItem();
-            //FimBomboBox
-            
+
             String nome = "";
             int crm = 0;
             String especialidade = "";
@@ -274,17 +269,17 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                 crm = Integer.parseInt(this.inputCRM.getText());
             }
 
-            if (this.inputEspecialidade.getText().length() < 2) {
+            if (this.inputEspecialidade.getText().length() < 5) {
                 throw new Mensagem("Especialidade deve conter ao menos 2 caracteres.");
             } else {
                 especialidade = this.inputEspecialidade.getText();
             }
             
-            if (this.inputTelefone.getText().length() <= 0) {
-                throw new Mensagem("Telefone deve ser um número e conter 9 dígitos.");
-            } else {
-                telefone = TelefoneUtil.converter(this.inputTelefone.getText());
-            }
+            telefone = TelefoneUtil.converter(telefone);
+            
+            if(testar(telefone)){
+                throw new Mensagem("Telefone inserido não é valido.");
+            }             
             
             //ComboBox
             if (this.comboBoxPeriodo.getSelectedIndex() == -1) {
@@ -320,7 +315,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                 this.inputEspecialidade.setText("");
                 this.comboBoxPeriodo.setSelectedIndex(-1);
                 this.comboBoxConsultorio.setSelectedIndex(-1);
-                this.inputTelefone.setText("");
+                this.inputTelefone.setText(null);
             }
 
 
@@ -331,14 +326,22 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Informe um número");
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
-
+       
+    public boolean testar(String numero) {
+        boolean teste = true;
+        try {
+            int inteiro = Integer.parseInt(numero);
+            teste = false;
+        } catch(NumberFormatException e) {
+            System.out.println(e.getMessage());
+        }
+        return teste;
+    }
+            
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.setVisible(false);
+        dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

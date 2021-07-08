@@ -30,5 +30,25 @@ public class DateUtil {
         }
         
         return data;
-    }        
+    }     
+    
+    public static String formatar(String entrada) {
+        
+        String saida = "";
+        
+        try {
+            String dia = entrada.substring(8);
+            
+            String mes = entrada.substring(5, 7);
+            
+            String ano = entrada.substring(0, 4);
+            
+            saida = dia + "/" + mes + "/" + ano;
+            
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
+        return saida;
+    }
 }

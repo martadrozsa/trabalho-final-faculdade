@@ -463,20 +463,18 @@ public class TelaAgendamento extends javax.swing.JFrame {
             painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelImagemFundo2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(painelImagemFundo2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(txtTitulo)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtTitulo)
+                .addGap(38, 38, 38))
         );
         painelImagemFundo2Layout.setVerticalGroup(
             painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelImagemFundo2Layout.createSequentialGroup()
+            .addGroup(painelImagemFundo2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtTitulo)
+                .addGroup(painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtTitulo)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -692,7 +690,9 @@ public class TelaAgendamento extends javax.swing.JFrame {
     
     // btn excluir modo edição do agendamento
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        int respostaUsuario = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja APAGAR este Agendamento?");
+        int respostaUsuario = JOptionPane.showConfirmDialog(
+                null, "Tem certeza que deseja APAGAR este Agendamento?",
+                "Confirmar exclusão", 0, 3);
         if (respostaUsuario != 0) {
             return;
         } 
@@ -703,7 +703,7 @@ public class TelaAgendamento extends javax.swing.JFrame {
             
             // fazer os cleanups dos componentes que tem a info do agendamento. setText("")
             
-            JOptionPane.showMessageDialog(rootPane, "Agendamento apagado com sucesso");
+            JOptionPane.showMessageDialog(null, "Agendamento apagado com sucesso");
             retornaParaTelaConsulta();
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
@@ -723,7 +723,9 @@ public class TelaAgendamento extends javax.swing.JFrame {
         //verifica se o paciente deseja realizar o reagendamento já possui agendamento no mesmo dia e horário (no outro consultório)
         boolean agendamentoLivre = isAgendamentoLivreParaPaciente(horarioTxt, nomePaciente);       
         if (agendamentoLivre != true) {
-            JOptionPane.showMessageDialog(null, "Este paciente possui agendamento marcado no mesmo horário! \n Selecione um novo horário!");
+            JOptionPane.showMessageDialog(
+                    null, "Este paciente possui agendamento marcado no mesmo horário!"
+                            + " \n Selecione um novo horário!");
             return;
         } 
         
@@ -784,7 +786,9 @@ public class TelaAgendamento extends javax.swing.JFrame {
     
     // método para fazer remanejamento de consulta entre dois pacientes
     private void swap() {
-        int respostaUsuario = JOptionPane.showConfirmDialog(null, "Horário selecionado possui agendamento. Deseja alterar este agendamento?");
+        int respostaUsuario = JOptionPane.showConfirmDialog(
+                null, "Horário selecionado possui agendamento. Deseja alterar "
+                        + "este agendamento?", "Conflito de horário", 0, 3);
         if (respostaUsuario != 0) {
             return;
         }
@@ -806,13 +810,15 @@ public class TelaAgendamento extends javax.swing.JFrame {
         agendamentoController.apagarAgendamento(idAgendamentoDestn);
 
         //tem que criar um agendamento nesse slot com os dados do agendamento de origem
-        agendamentoController.cadastrarAgendamento(dataDestn, horaDestn, idMedicoDestn, idPacienteOrigem);
+        agendamentoController.cadastrarAgendamento(dataDestn, 
+                horaDestn, idMedicoDestn, idPacienteOrigem);
         
         // o agendamento de origem está duplicado, no slot original e de destino. Então você deleta o agendamento de origem no slot de origem
         agendamentoController.apagarAgendamento(idAgendamentoOrigem);
                   
         // o slot de origem está liberado. Então finalmente você cria um novo agendamento usando os dados salvos no primeiro passo
-        agendamentoController.cadastrarAgendamento(dataAgendamentoOrigem, horaAgendamentoOrigem, idMedicoOrigem, idPacienteDestn);
+        agendamentoController.cadastrarAgendamento(dataAgendamentoOrigem,
+                horaAgendamentoOrigem, idMedicoOrigem, idPacienteDestn);
         
         String nomeMedico = dadosSelecionados[NOME_MEDICO.ordinal()];
         inputMedico.setText(nomeMedico);
