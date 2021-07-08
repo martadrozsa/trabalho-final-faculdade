@@ -232,9 +232,9 @@ public class TelaCadastroPaciente extends javax.swing.JFrame {
                 endereco = this.inputEndereco.getText();
             }
 
-            telefone = TelefoneUtil.converter(telefone);
+            telefone = TelefoneUtil.converter(inputFone.getText());
             
-            if(!testar(telefone)){
+            if(testar(telefone)){
                 throw new Mensagem("Telefone inserido não é valido.");
             }  
 
