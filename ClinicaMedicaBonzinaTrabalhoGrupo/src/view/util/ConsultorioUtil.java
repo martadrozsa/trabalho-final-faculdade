@@ -7,7 +7,7 @@ public class ConsultorioUtil {
     String saida = "";
         
     if(entrada.equals("CONSULTORIO_2")) {
-        saida = "Consultório 1";
+        saida = "Consultório 2";
     } else {
         saida = "Consultório 1";
     }
