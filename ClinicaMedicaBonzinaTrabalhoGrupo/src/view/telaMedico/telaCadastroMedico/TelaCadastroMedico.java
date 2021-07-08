@@ -328,13 +328,12 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                 this.inputEspecialidade.setText("");
                 this.comboBoxPeriodo.setSelectedIndex(-1);
                 this.comboBoxConsultorio.setSelectedIndex(-1);
-                this.inputTelefone.setText(null);
+                this.inputTelefone.setText("");
             }
 
 
         } catch (Mensagem erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
-
         } catch (NumberFormatException erro2) {
             JOptionPane.showMessageDialog(null, "Informe um número");
         }
@@ -346,7 +345,7 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
             int inteiro = Integer.parseInt(numero);
             teste = false;
         } catch(NumberFormatException e) {
-            System.out.println(e.getMessage());
+            System.out.println("erro do metodo testar " + e.getMessage());
         }
         return teste;
     }

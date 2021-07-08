@@ -20,7 +20,7 @@ public class TelefoneUtil {
             termino = entrada.substring(9);
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("erro do converter na classe util " + e.getMessage());
         }
 
         String saida = ddd + inicio + termino;
