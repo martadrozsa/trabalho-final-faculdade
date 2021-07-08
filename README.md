@@ -5,5 +5,4 @@ Trabalho desenvolvido nas disciplinas de Programação de Soluções Computacion
 
 Este projeto foi desenvolvido utilizando:
 
---- Java 11 (Swing + JDBC)
---- MySQL
+Java 11 (Swing + JDBC) e MySQL
