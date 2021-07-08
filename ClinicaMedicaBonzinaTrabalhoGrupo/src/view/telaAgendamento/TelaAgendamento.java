@@ -741,7 +741,8 @@ public class TelaAgendamento extends javax.swing.JFrame {
     
     // método para reagendar uma consulta para o mesmo paciente
     private void reagendar() {
-        int respostaUsuario = JOptionPane.showConfirmDialog(null, "Deseja alterar o horário deste paciente?");
+        int respostaUsuario = JOptionPane.showConfirmDialod(
+                null, "Deseja alterar o horário deste paciente?", "Alterar horário",  0, 3);
         if (respostaUsuario != 0) {
             return;
         }
