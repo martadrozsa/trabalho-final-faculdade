@@ -126,6 +126,11 @@ public class TelaConsulta extends javax.swing.JFrame {
             }
         });
         tabelaAgendamentosConsulta.getTableHeader().setReorderingAllowed(false);
+        tabelaAgendamentosConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaAgendamentosConsultaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaAgendamentosConsulta);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -345,6 +350,12 @@ public class TelaConsulta extends javax.swing.JFrame {
         calendarDataAgendamento.setDate(null);
         atualizaTabelaAgendaDaData();
     }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void tabelaAgendamentosConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaAgendamentosConsultaMouseClicked
+        if(evt.getClickCount() == 2) {
+            btnVisualizar.doClick();
+        }
+    }//GEN-LAST:event_tabelaAgendamentosConsultaMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
