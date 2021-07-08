@@ -757,7 +757,7 @@ public class TelaEdicaoExclusaoMedico extends javax.swing.JFrame {
             }
             
             if(txtTelefone.getText().length() == 13) {
-                telefone = TelefoneUtil.converter(telefone);
+                telefone = TelefoneUtil.converter(txtTelefone.getText());
             } else {
                 throw new Mensagem("Telefone inválido");
             }
