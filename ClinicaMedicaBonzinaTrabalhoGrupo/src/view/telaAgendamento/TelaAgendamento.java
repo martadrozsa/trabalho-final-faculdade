@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import view.telaBuscarPaciente.TelaBuscarPaciente;
 import view.telaConsultaAgendamento.TelaConsulta;
+import view.util.DateUtil;
 import view.util.SwingUtil;
 import static view.util.SwingUtil.centralizaCells;
 
@@ -551,7 +552,7 @@ public class TelaAgendamento extends javax.swing.JFrame {
             int idPaciente,
             TelaConsulta telaConsulta
     ) {
-        recebeDadosPaciente(idPaciente, nome, dataNascimento);
+        recebeDadosPaciente(idPaciente, nome, DateUtil.formatar(dataNascimento));
         
         this.idAgendamentoOrigem = idAgendamento;
         horaAgendamentoOrigem = Time.valueOf(horario);
@@ -559,7 +560,7 @@ public class TelaAgendamento extends javax.swing.JFrame {
         
         this.telaConsulta = telaConsulta;
         
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");  
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         
         inputData.setText(dateFormat.format(dataAgendamento));
         inputHorario.setText(horario);
