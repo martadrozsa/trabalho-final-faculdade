@@ -210,7 +210,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Consultas Cadastradas");
+        jLabel4.setText("Consultas Agendadas");
 
         lblContagemConsultas.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         lblContagemConsultas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
