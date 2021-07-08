@@ -23,6 +23,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pnlConsultasCount.setOpaque(false);
         setVisible(true);
         atualizarContador();
+        pnlPacientesCount.setToolTipText("Clique para atualizar");
+        pnlConsultasCount.setToolTipText("Clique para atualizar");
     }
     
     public void atualizarContador() {
