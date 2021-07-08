@@ -250,6 +250,9 @@
               <Dimension value="[294, 302]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pnlPacientesCountMouseClicked"/>
+          </Events>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -322,6 +325,9 @@
               <Dimension value="[294, 302]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="pnlConsultasCountMouseClicked"/>
+          </Events>
 
           <Layout>
             <DimensionLayout dim="0">

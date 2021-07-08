@@ -11,18 +11,24 @@ import view.telaSobre.TelaSobre;
 
 public class TelaPrincipal extends javax.swing.JFrame {
     
+    PacienteController pacienteControl;
+    AgendamentoController agendaControl;
+        
     public TelaPrincipal() {
         initComponents();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        PacienteController pacienteControl = new PacienteController();
-        lblContagemPacientes.setText(Integer.toString(pacienteControl.getCountPacientes()));
-        AgendamentoController agendaControl = new AgendamentoController();
-        lblContagemConsultas.setText(Integer.toString(agendaControl.getCountTotalSchedules()));
+        pacienteControl = new PacienteController();
+        agendaControl = new AgendamentoController();
         pnlPacientesCount.setOpaque(false);
         pnlConsultasCount.setOpaque(false);
         setVisible(true);
+        atualizarContador();
     }
-
+    
+    public void atualizarContador() {
+        lblContagemPacientes.setText(Integer.toString(pacienteControl.getCountPacientes()));
+        lblContagemConsultas.setText(Integer.toString(agendaControl.getCountTotalSchedules()));
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -151,6 +157,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         pnlPacientesCount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlPacientesCount.setPreferredSize(new java.awt.Dimension(294, 302));
+        pnlPacientesCount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlPacientesCountMouseClicked(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -191,6 +202,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         pnlConsultasCount.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         pnlConsultasCount.setPreferredSize(new java.awt.Dimension(294, 302));
+        pnlConsultasCount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pnlConsultasCountMouseClicked(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -306,6 +322,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
+
+    private void pnlPacientesCountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlPacientesCountMouseClicked
+        atualizarContador();
+    }//GEN-LAST:event_pnlPacientesCountMouseClicked
+
+    private void pnlConsultasCountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlConsultasCountMouseClicked
+        atualizarContador();
+    }//GEN-LAST:event_pnlConsultasCountMouseClicked
 
     /**
      * @param args the command line arguments
