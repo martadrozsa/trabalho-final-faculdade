@@ -68,7 +68,7 @@ public class AgendamentoBusiness {
             String nomePaciente = paciente.getNome();
             agendamentoVazio.getPaciente().setNome(nomePaciente);
             
-            agendamentoVazio.getPaciente().setId(i);
+            agendamentoVazio.getPaciente().setId(idPaciente);
             
             int idAgendamento = agendamentoOcupado.getIdAgendamento();
             agendamentoVazio.setIdAgendamento(idAgendamento);

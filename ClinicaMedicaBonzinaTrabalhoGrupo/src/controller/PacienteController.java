@@ -2,7 +2,6 @@ package controller;
 
 import java.util.Date;
 import java.util.List;
-import javax.swing.JOptionPane;
 import model.business.PacienteBusiness;
 import model.entity.Paciente;
 
@@ -41,7 +40,7 @@ public class PacienteController {
         
         List<Paciente> minhaLista = pacienteBusiness.getMinhaLista();
         int tamanho = minhaLista.size();
-        
+                
         String[][] matrizPacientes = new String[tamanho][5];
         for (int i = 0; i < tamanho; i++) {
             matrizPacientes[i][0] = minhaLista.get(i).getId() + "";

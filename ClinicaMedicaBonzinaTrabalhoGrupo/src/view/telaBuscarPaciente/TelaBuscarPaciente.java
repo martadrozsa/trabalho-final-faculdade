@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import view.telaAgendamento.TelaAgendamento;
+import view.telaPaciente.telaCadastroPaciente.TelaCadastroPaciente;
 import view.util.SwingUtil;
 import static view.util.SwingUtil.centralizaCells;
 
@@ -14,6 +15,7 @@ public class TelaBuscarPaciente extends javax.swing.JFrame {
    
     private PacienteController pacienteController;
     private TelaAgendamento agendamentoView;
+    private TelaCadastroPaciente cadastrarPaciente;
             
     public TelaBuscarPaciente() {
         initComponents();
@@ -226,7 +228,15 @@ public class TelaBuscarPaciente extends javax.swing.JFrame {
         preencheTabela(matrizVazia);
     }
     
+    private void verificaSePacienteExiste () {
+
+        int resposta_usuario = JOptionPane.showConfirmDialog(null, "O paciente não foi encontrado. Você deseja cadastrar?");
+        if (resposta_usuario == 0) {
+            cadastrarPaciente = new TelaCadastroPaciente();    
+        }
+    }
     
+
     private void btnBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPacienteActionPerformed
         
         String input = this.inputBuscarPaciente.getText();
@@ -240,12 +250,14 @@ public class TelaBuscarPaciente extends javax.swing.JFrame {
         if (linhasMatriz.length > 0) {
             preencheTabela(linhasMatriz);
         } else {
-          limpaTabela();  
+            verificaSePacienteExiste();
+            limpaTabela();  
         }
         this.inputBuscarPaciente.setText("");
         
     }//GEN-LAST:event_btnBuscarPacienteActionPerformed
 
+    
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
         if (this.tabelaPacientes.getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(null, "Selecione um paciente");
@@ -253,7 +265,7 @@ public class TelaBuscarPaciente extends javax.swing.JFrame {
             String id = this.tabelaPacientes.getValueAt(this.tabelaPacientes.getSelectedRow(), 0).toString();
             String nome = this.tabelaPacientes.getValueAt(this.tabelaPacientes.getSelectedRow(),1).toString();
             String dataNascimento = this.tabelaPacientes.getValueAt(this.tabelaPacientes.getSelectedRow(), 2).toString();
-            
+
             int idInt = Integer.parseInt(id);
             agendamentoView.recebeDadosPaciente(idInt, nome, dataNascimento);
             setVisible(false);

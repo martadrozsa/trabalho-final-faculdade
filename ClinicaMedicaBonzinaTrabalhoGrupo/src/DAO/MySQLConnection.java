@@ -20,7 +20,7 @@ public class MySQLConnection {
             final String database = "clinica_medica";
             final String url = "jdbc:mysql://" + server + ":3306/" + database + "?serverTimezone=UTC&useTimezone=true";
             final String user = "root";
-            final String password = "1234567";
+            final String password = "pass";
 
             // Conectando..
             connection = DriverManager.getConnection(url, user, password);
@@ -44,8 +44,8 @@ public class MySQLConnection {
         if (uniqueInstance == null) {
             uniqueInstance = new MySQLConnection();
         }
-            return uniqueInstance;
 
+        return uniqueInstance;
     }
 
     public Connection getConnection() {
