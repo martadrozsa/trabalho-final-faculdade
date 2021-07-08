@@ -290,9 +290,9 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
             
             telefone = TelefoneUtil.converter(inputTelefone.getText());
             
-            if(testar(telefone)){
-                throw new Mensagem("Telefone inserido não é valido.");
-            }             
+//            if(testar(telefone)){
+//                throw new Mensagem("Telefone inserido não é valido.");
+//            }             
             
             //ComboBox
             if (this.comboBoxPeriodo.getSelectedIndex() == -1) {
@@ -318,6 +318,10 @@ public class TelaCadastroMedico extends javax.swing.JFrame {
                 consultorio = "CONSULTORIO_2";
             }
 
+            if (medicoController.contaMedicosPorPeriodoConsultorio(periodo, consultorio) > 0) {
+                JOptionPane.showMessageDialog(rootPane, "Consultório já ocupado no período selecionado!");
+                return;
+            }
 
             //envia os dados para o Controlador cadastrar
             if (this.medicoController.cadastrar(crm, especialidade, periodo, consultorio, nome, telefone)) {

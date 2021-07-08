@@ -79,4 +79,10 @@ public class MedicoController {
         
         return matrizMedicos;
     }
+    
+    public int contaMedicosPorPeriodoConsultorio(String periodo, String consultorio) {
+        Periodo per = Periodo.valueOf(periodo);
+        Consultorio cons = Consultorio.valueOf(consultorio);
+        return medicoBusiness.contaMedicosPorPeriodoConsultorio(per, cons);
+    }
 }

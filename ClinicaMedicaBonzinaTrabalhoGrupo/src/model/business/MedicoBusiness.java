@@ -3,6 +3,8 @@ package model.business;
 import DAO.MedicoDAO;
 import java.util.List;
 import model.entity.Medico;
+import model.entity.enums.Consultorio;
+import model.entity.enums.Periodo;
 
 public class MedicoBusiness {
 
@@ -36,5 +38,9 @@ public class MedicoBusiness {
     // retorna todos os médicos
     public List<Medico> getMedicos() {
         return medicoDAO.getMinhaListaMedicos();
+    }
+    
+    public int contaMedicosPorPeriodoConsultorio(Periodo periodo, Consultorio consultorio) {
+        return medicoDAO.contaMedicosPorPeriodoConsultorio(periodo, consultorio);
     }
 }

@@ -234,9 +234,9 @@ public class TelaCadastroPaciente extends javax.swing.JFrame {
 
             telefone = TelefoneUtil.converter(inputFone.getText());
             
-            if(testar(telefone)){
-                throw new Mensagem("Telefone inserido não é valido.");
-            }  
+//            if(!testar(telefone)){
+//                throw new Mensagem("Telefone inserido não é valido.");
+//            }  
 
             // envia os dados para o Controlador cadastrar
             if (this.pacienteController.cadastrar(nome, data_nascimento, endereco, telefone)) {

@@ -160,5 +160,37 @@ public class MedicoDAO {
             return new ArrayList<>();
         }
     }
+    
+    private int parseTotalMedicos(ResultSet resultSet) throws SQLException {
+        int totalAgendamentos = -1;
+        
+        while (resultSet.next()) {
+            totalAgendamentos = resultSet.getInt("total");
+        }
+
+        return totalAgendamentos;
+    }
+    
+    public int contaMedicosPorPeriodoConsultorio(Periodo periodo, Consultorio consultorio) {
+        String queryStatement = "SELECT COUNT(*) as total from medico WHERE consultorio=? and periodo=?";
+
+        try {
+            PreparedStatement preparedStatement = mySQLConn.getConnection().prepareStatement(queryStatement);
+            preparedStatement.setString(1, consultorio.toString());
+            preparedStatement.setString(2, periodo.toString());
+
+            // Recupera dados da base
+            ResultSet resultSet = preparedStatement.executeQuery();
+            int total = parseTotalMedicos(resultSet);
+            preparedStatement.close();
+            
+            return total;
+
+        } catch (Exception ex) {
+            System.out.println("Error while querying data: " + ex.toString());
+            
+            return -1;
+        }
+    }
 
 }
